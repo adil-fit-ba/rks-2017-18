@@ -23,6 +23,17 @@ public class Storage {
         return korisnici;
     }
 
+    public static KorisnikVM getKorisnikByName(String name)
+    {
+        for (KorisnikVM x : getKorisniciAll()) {
+            if ((x.getImePrezime()).equals(name))
+            {
+                return x;
+            }
+        }
+        return null;
+    }
+
     public static List<KorisnikVM> getKorisniciByName(String name)
     {
         List<KorisnikVM> rezultat = new ArrayList<>();
