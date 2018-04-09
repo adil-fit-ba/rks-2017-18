@@ -11,7 +11,7 @@ import ba.fit.app.hci_odbrana.podaci.KorisnikVM;
 import ba.fit.app.hci_odbrana.podaci.PosiljkaVM;
 import ba.fit.app.hci_odbrana.podaci.Storage;
 
-public class Paket2Activity extends AppCompatActivity {
+public class Paket2Activity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,18 +34,28 @@ public class Paket2Activity extends AppCompatActivity {
     }
 
     private void do_btnZavrsi_click() {
-        String primaoc = Paket1Activity.primaoc;
+//        String primaoc = Paket1Activity.primaoc;
+//
+//        KorisnikVM primaocKorisnik = Storage.getKorisnikByName(primaoc);
+//        if (primaocKorisnik == null)
+//            primaocKorisnik = new KorisnikVM(primaoc, "nn");
+//
+//        PosiljkaVM model = new PosiljkaVM();
+//        model.primaoc = primaocKorisnik;
+//        model.posljiaoc = primaocKorisnik;
+//
+//        Storage.getPosiljkeAll().add(model);
+//
+//    startActivity(new Intent(this, Paket3Activity.class));
 
-        KorisnikVM primaocKorisnik = Storage.getKorisnikByName(primaoc);
-        if (primaocKorisnik == null)
-            primaocKorisnik = new KorisnikVM(primaoc, "nn");
 
-        PosiljkaVM model = new PosiljkaVM();
-        model.primaoc = primaocKorisnik;
-        model.posljiaoc = primaocKorisnik;
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "poruka");
+        sendIntent.setType("text/plain");
 
-        Storage.getPosiljkeAll().add(model);
-
-    startActivity(new Intent(this, Paket3Activity.class));
+        if (sendIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(sendIntent);
+        }
     }
 }

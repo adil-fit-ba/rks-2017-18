@@ -1,4 +1,4 @@
-package ba.fit.app.hci_odbrana.api;
+package ba.fit.app.hci_odbrana.helper.api;
 
 
 import ba.fit.app.hci_odbrana.helper.ApiRequest;
@@ -10,15 +10,17 @@ import ba.fit.app.hci_odbrana.helper.Config;
  */
 public class AdminOdjeljenjaApi
 {
-    public static final String CONTROLLER = "AdminOdjeljenja";
+    public static final String CONTROLLER = "AdminHome";
 
-    public static void GetOcjene(ApiTask<AdminOdjeljenjaVM> task)
+    public static void Predmeti(ApiTask<AdminOdjeljenjaVM> task)
     {
         String url = Config.baseUrl
                 .buildUpon()
                 .appendPath(CONTROLLER)
                 .appendPath("Predmeti")
-                .appendQueryParameter("razred", "1")
+                .appendQueryParameter("a", "1")
+                .appendQueryParameter("a", "2")
+                .appendQueryParameter("b", "4")
                 .toString();
 
 

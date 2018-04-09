@@ -1,4 +1,4 @@
-package ba.fit.app.hci_odbrana.api;
+package ba.fit.app.hci_odbrana.helper.api;
 
 import java.util.List;
 

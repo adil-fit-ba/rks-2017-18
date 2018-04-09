@@ -22,8 +22,6 @@ import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.util.Map;
 
-import ba.ism.ednevnik.helper.ApiResult;
-import ba.ism.ednevnik.helper.MyGson;
 
 
 /**

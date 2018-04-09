@@ -1,14 +1,10 @@
 package ba.fit.app.hci_odbrana.helper.volley;
 
 import android.content.Context;
-import android.content.pm.PackageInstaller;
 import android.graphics.Bitmap;
 import android.util.Log;
 import android.util.LruCache;
-import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.RetryPolicy;
@@ -16,10 +12,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 
-import java.util.Map;
-
-import ba.ism.ednevnik.MyApp;
-import ba.ism.ednevnik.helper.Sesija;
 
 /**
  * Preuzeto https://developer.android.com/training/volley/requestqueue.html

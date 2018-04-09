@@ -1,6 +1,33 @@
 <resources>
-    <string name="app_name">hci_odbrana</string>
+    <string name="app_name">Naziv aplikacije</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dalje">Idi dalje</string>
+    <string name="napomena">
+        About the course
+
+The course materials include:
+
+    A practical workbook: Android Developer Fundamentals Course—Practicals
+    A concept reference: Android Developer Fundamentals Course—Concepts
+    Slide decks (for optional use by instructors)
+    Videos of lectures (for reference by instructors and developers)
+    Source code in GitHub for apps that developers create during the practical exercises
+
+Each lesson contains a slide deck, a concepts chapter, and in most cases, one or more practical exercises. As developers work through the exercises, they create apps to practice and perfect the skills they\'re learning. Some lessons are purely conceptual and do not have practicals.
+
+The course is offered as an in-person course at selected colleges, facilitated by college faculty. The materials are also available online for self-study by anyone who knows the Java programming language.
+
+Android Developer Fundamentals prepares developers to take the exam for the Associate Android Developer certification.
+Prerequisites
+
+Developers taking the course must have Java programming experience.
+
+Android Developer Fundamentals is intended for computer science and engineering undergraduates who have already learned the Java programming language.
+How do I offer the course?
+
+Android Developer Fundamentals is offered as an elective course to undergraduate developers by selected universities and colleges in India. If you\'d like to offer Android Developer Fundamentals at your university or college, contact the Google Developers Training team at developer-training-info@google.com.
+
+    </string>
 </resources>
