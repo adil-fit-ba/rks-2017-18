@@ -8,11 +8,23 @@ https://github.com/adil-fit-ba/rks-2017-18/blob/master/dokumenti/01_Java_zadaci.
 https://www.youtube.com/watch?v=hYsSZxTSC-g&t=975s
 
 
+_________________________________________
+
 2. Android - start
 https://github.com/adil-fit-ba/rks-2017-18/blob/master/dokumenti/02_Android_start.docx
 
-3. Android - Fundamentals Course (slides, book, code, video, certificate)
+Android - Fundamentals Course (slides, book, code, video, certificate)
 https://developers.google.com/training/courses/android-fundamentals
 
-4. Android - Advanced Development Course (slides, book, code, video, certificate)
+Android - Advanced Development Course (slides, book, code, video, certificate)
 https://developers.google.com/training/courses/android-advanced
+
+__________________________
+
+
+3. ApiResult
+
+ngrok http 30000 --region=eu -host-header=rewrite
+
+RecylerViewer
+https://www.androidhive.info/2016/01/android-working-with-recycler-view/
