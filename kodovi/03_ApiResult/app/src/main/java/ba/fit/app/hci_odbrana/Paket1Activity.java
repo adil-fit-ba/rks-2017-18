@@ -1,5 +1,6 @@
 package ba.fit.app.hci_odbrana;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,8 @@ import android.widget.Toast;
 import ba.fit.app.hci_odbrana.helper.ApiTask;
 import ba.fit.app.hci_odbrana.helper.api.AdminOdjeljenjaApi;
 import ba.fit.app.hci_odbrana.helper.api.AdminOdjeljenjaVM;
+
+import static ba.fit.app.hci_odbrana.Paket2Activity.argName;
 
 public class Paket1Activity extends FragmentActivity {
 
@@ -48,11 +51,15 @@ public class Paket1Activity extends FragmentActivity {
                         {
                             int size = value.rows.size();
                             Toast.makeText(Paket1Activity.this, "Broj predmta" + size, Toast.LENGTH_LONG).show();
+
+                            Bundle args = new Bundle();
+                            args.putSerializable(argName, value);
+                            startActivity(new Intent(Paket1Activity.this, Paket2Activity.class), args);
                         }
                     }
                 });
 
-                //startActivity(new Intent(Paket1Activity.this, Paket2Activity.class));
+
             }
         });
     }

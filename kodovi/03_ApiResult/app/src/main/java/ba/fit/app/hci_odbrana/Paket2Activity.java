@@ -13,6 +13,7 @@ import ba.fit.app.hci_odbrana.podaci.Storage;
 
 public class Paket2Activity extends FragmentActivity {
 
+    public static String argName="nn234yd,..523x!";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,17 +46,10 @@ public class Paket2Activity extends FragmentActivity {
 //        model.posljiaoc = primaocKorisnik;
 //
 //        Storage.getPosiljkeAll().add(model);
-//
-//    startActivity(new Intent(this, Paket3Activity.class));
+
+    startActivity(new Intent(this, Paket3Activity.class));
 
 
-        Intent sendIntent = new Intent();
-        sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, "poruka");
-        sendIntent.setType("text/plain");
 
-        if (sendIntent.resolveActivity(getPackageManager()) != null) {
-            startActivity(sendIntent);
-        }
     }
 }
