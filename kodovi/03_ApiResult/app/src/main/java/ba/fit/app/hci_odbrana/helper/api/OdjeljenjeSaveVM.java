@@ -8,8 +8,8 @@ import java.util.List;
  */
 
 public class OdjeljenjeSaveVM implements Serializable{
-        public String SkolskaGodina;
-        public String Oznaka ;
-        public int Razred ;
-        public Integer RazrednikID ;
+        public String skolskaGodina;
+        public String oznaka;
+        public int razred;
+        public Integer razrednikID;
     }

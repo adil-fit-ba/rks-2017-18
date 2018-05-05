@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import ba.fit.app.hci_odbrana.helper.api.OdjeljenjeSaveVM;
 
-import static ba.fit.app.hci_odbrana.Paket2Activity.argName;
 
 public class Paket1Activity extends FragmentActivity {
 
@@ -33,12 +32,12 @@ public class Paket1Activity extends FragmentActivity {
                 Toast.makeText(Paket1Activity.this, "Kliknuto dugme dalje", Toast.LENGTH_LONG).show();
 
                 OdjeljenjeSaveVM x = new OdjeljenjeSaveVM();
-                x.Oznaka = odjeljenjeNazivText.getText().toString();
-                x.SkolskaGodina= skolskaGodinaText.getText().toString();
+                x.oznaka = odjeljenjeNazivText.getText().toString();
+                x.skolskaGodina = skolskaGodinaText.getText().toString();
 
 
                 Intent intent = new Intent(Paket1Activity.this, Paket2Activity.class);
-                intent.putExtra(argName, x);
+                intent.putExtra(Paket2Activity.argName, x);
                 startActivity(intent);
             }
         });

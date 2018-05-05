@@ -12,11 +12,11 @@ public class OdjeljenjeIndexVM implements Serializable{
 
         public class Row implements Serializable
         {
-            public int OdeljenjeId;
-            public String SkolskaGodina ;
-            public String Razrednik ;
-            public String Oznaka ;
-            public int Razred ;
-            public Integer RazrednikID ;
+            public int odeljenjeId;
+            public String skolskaGodina;
+            public String razrednik;
+            public String oznaka;
+            public int razred;
+            public Integer razrednikID;
         }
 }

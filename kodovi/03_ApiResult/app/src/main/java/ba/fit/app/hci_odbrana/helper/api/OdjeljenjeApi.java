@@ -19,7 +19,7 @@ public class OdjeljenjeApi
         String url = Config.baseUrl
                 .buildUpon()
                 .appendPath(CONTROLLER)
-                .appendPath("Predmeti")
+                .appendPath("Index")
                 .appendQueryParameter("razred", "")
                 .toString();
 
@@ -39,7 +39,7 @@ public class OdjeljenjeApi
         ApiRequest.Get(url, task);
     }
 
-    public static void Save(OdjeljenjeSaveVM input, ApiTask<Void> task)
+    public static void Save(OdjeljenjeSaveVM input, ApiTask task)
     {
         String url = Config.baseUrl
                 .buildUpon()

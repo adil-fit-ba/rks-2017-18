@@ -9,8 +9,6 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.util.List;
-
 import ba.fit.app.hci_odbrana.helper.ApiTask;
 import ba.fit.app.hci_odbrana.helper.api.OdjeljenjeApi;
 import ba.fit.app.hci_odbrana.helper.api.OdjeljenjeNastavniciVM;
@@ -21,6 +19,7 @@ public class Paket2Activity extends FragmentActivity {
     public static String argName="nn234yd,..523x!";
     private OdjeljenjeSaveVM saveVM;
     private Spinner spinnerRazrednik;
+    private OdjeljenjeNastavniciVM nastavniciVM;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +36,8 @@ public class Paket2Activity extends FragmentActivity {
             public void run(boolean isCommunicationOrParseError, boolean isException, int exceptionCode, String message,OdjeljenjeNastavniciVM value) {
                 if (isException)
                     return;
+
+                nastavniciVM = value;
 
                 ArrayAdapter<String>adapter = new ArrayAdapter<String>(Paket2Activity.this, android.R.layout.simple_spinner_item, value.texts);
 
@@ -56,11 +57,14 @@ public class Paket2Activity extends FragmentActivity {
         });
     }
 
-    private void do_btnZavrsi_click() {
+    private void do_btnZavrsi_click()
+    {
 
-        OdjeljenjeApi.Save(saveVM, new ApiTask<Void>() {
+        saveVM.razrednikID = nastavniciVM.iDs.get(spinnerRazrednik.getSelectedItemPosition());
+
+        OdjeljenjeApi.Save(saveVM, new ApiTask() {
             @Override
-            public void run(boolean isCommunicationOrParseError, boolean isException, int exceptionCode, String message, Void value) {
+            public void run(boolean isCommunicationOrParseError, boolean isException, int exceptionCode, String message, Object value) {
                 if (isException)
                 {
                     Toast.makeText(Paket2Activity.this, message, Toast.LENGTH_LONG).show();

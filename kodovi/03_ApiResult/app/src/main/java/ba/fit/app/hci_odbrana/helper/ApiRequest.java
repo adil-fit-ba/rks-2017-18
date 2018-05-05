@@ -5,12 +5,16 @@ import android.util.Log;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.gson.Gson;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.lang.reflect.Type;
 
@@ -71,11 +75,11 @@ public class ApiRequest {
 
     public static <T> void Post(final String url, Object post, final ApiTask<T> result)
     {
-        Response.Listener<ApiResult<T>> successListener = new Response.Listener<ApiResult<T>>() {
+        Response.Listener<JSONObject> successListener = new Response.Listener<JSONObject>() {
             @Override
-            public void onResponse(ApiResult<T> response) {
-                result.run(false, response.isException, response.exceptionCode, response.errorMessage, response.value);
-                Log.w("ApiRequest", "end-ok api: " + url);
+            public void onResponse(JSONObject response) {
+//                result.run(false, response.isException, response.exceptionCode, response.errorMessage, response.value);
+//                Log.w("ApiRequest", "end-ok api: " + url);
             }
         };
         Response.ErrorListener errorListener = new Response.ErrorListener() {
@@ -111,7 +115,14 @@ public class ApiRequest {
         }).create();
 
         String jsonPost = MyGson.builder().create().toJson(post);
-        GsonRequest<ApiResult<T>> gsonRequest = new GsonRequest<>(url, ApiResult.class, null, jsonPost, successListener, errorListener, Request.Method.GET, gson);
+        JSONObject jsonObject = null;
+        try {
+            jsonObject = new JSONObject(jsonPost);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest gsonRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, successListener, errorListener);
         MySingleton.getInstance(MyApp.getContext()).addToRequestQueue(gsonRequest);
     }
 }
