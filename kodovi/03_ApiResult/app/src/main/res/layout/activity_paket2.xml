@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,58 +9,32 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Podaci o paketu"
-        android:textAlignment="center"
-        android:textSize="26sp" />
+        android:text="Razrednik"
 
-    <EditText
-        android:id="@+id/masaText"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+       />
+
+    <Spinner
+        android:id="@+id/spinnerRazrednik"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Masa (kg)"
+        android:layout_height="43dp"
+        android:hint="Razrednik"
+        android:layout_below="@id/textView3"
         android:inputType="number"
-        android:textAlignment="center" />
-
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" />
 
 
-        <EditText
-            android:id="@+id/napomenaText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/napomena"
-
-            android:textAlignment="center" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <CheckBox
-                android:id="@+id/platiPouzecemCheck"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Plati pouzecem" />
-
-
-            <EditText
-                android:id="@+id/iznosText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="Iznos (KM)"
-                android:inputType="number"
-                android:textAlignment="center" />
-        </LinearLayout>
-
-        <LinearLayout
+            android:layout_below="@+id/spinnerRazrednik"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -81,12 +55,4 @@
         </LinearLayout>
 
 
-
-    </LinearLayout>
-
-    </ScrollView>
-
-
-
-
-</LinearLayout>
+</RelativeLayout>

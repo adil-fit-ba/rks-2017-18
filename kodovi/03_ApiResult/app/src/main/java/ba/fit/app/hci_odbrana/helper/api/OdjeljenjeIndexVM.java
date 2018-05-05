@@ -7,7 +7,7 @@ import java.util.List;
  * Created by Adil Joldic on 09/04/2018.
  */
 
-public class AdminOdjeljenjaVM  implements Serializable{
+public class OdjeljenjeIndexVM implements Serializable{
         public List<Row> rows ;
 
         public class Row implements Serializable

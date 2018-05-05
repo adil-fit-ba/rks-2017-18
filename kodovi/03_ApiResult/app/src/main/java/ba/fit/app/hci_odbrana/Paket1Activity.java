@@ -8,24 +8,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import ba.fit.app.hci_odbrana.helper.ApiTask;
-import ba.fit.app.hci_odbrana.helper.api.AdminOdjeljenjaApi;
-import ba.fit.app.hci_odbrana.helper.api.AdminOdjeljenjaVM;
+import ba.fit.app.hci_odbrana.helper.api.OdjeljenjeSaveVM;
 
 import static ba.fit.app.hci_odbrana.Paket2Activity.argName;
 
 public class Paket1Activity extends FragmentActivity {
 
-    public static String primaoc = "";
-    public static String posiljaoc = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paket1);
 
         Button daljeButton = (Button) findViewById(R.id.daljeButton);
-        final EditText posiljaocText = (EditText) findViewById(R.id.posiljaocText);
-        final EditText primaocText = (EditText) findViewById(R.id.primaocText);
+        final EditText odjeljenjeNazivText = (EditText) findViewById(R.id.OdjeljenjeNazivText);
+        final EditText skolskaGodinaText = (EditText) findViewById(R.id.SkolskaGodinaText);
 
 
 
@@ -36,30 +32,14 @@ public class Paket1Activity extends FragmentActivity {
             public void onClick(View view) {
                 Toast.makeText(Paket1Activity.this, "Kliknuto dugme dalje", Toast.LENGTH_LONG).show();
 
-                primaoc = primaocText.getText().toString();
-                posiljaoc = posiljaocText.getText().toString();
+                OdjeljenjeSaveVM x = new OdjeljenjeSaveVM();
+                x.Oznaka = odjeljenjeNazivText.getText().toString();
+                x.SkolskaGodina= skolskaGodinaText.getText().toString();
 
 
-                AdminOdjeljenjaApi.Predmeti(new ApiTask<AdminOdjeljenjaVM>() {
-                    @Override
-                    public void run(boolean isCommunicationOrParseError, boolean isException, int exceptionCode, String message, AdminOdjeljenjaVM value) {
-                        if (isException)
-                        {
-                            Toast.makeText(Paket1Activity.this, message, Toast.LENGTH_LONG).show();
-                        }
-                        else
-                        {
-                            int size = value.rows.size();
-                            Toast.makeText(Paket1Activity.this, "Broj predmta" + size, Toast.LENGTH_LONG).show();
-
-                            Bundle args = new Bundle();
-                            args.putSerializable(argName, value);
-                            startActivity(new Intent(Paket1Activity.this, Paket2Activity.class), args);
-                        }
-                    }
-                });
-
-
+                Intent intent = new Intent(Paket1Activity.this, Paket2Activity.class);
+                intent.putExtra(argName, x);
+                startActivity(intent);
             }
         });
     }

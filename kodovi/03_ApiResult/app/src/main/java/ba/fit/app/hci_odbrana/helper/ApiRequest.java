@@ -68,4 +68,50 @@ public class ApiRequest {
         GsonRequest<ApiResult<T>> gsonRequest = new GsonRequest<>(url, ApiResult.class, null, null, successListener, errorListener, Request.Method.GET, gson);
         MySingleton.getInstance(MyApp.getContext()).addToRequestQueue(gsonRequest);
     }
+
+    public static <T> void Post(final String url, Object post, final ApiTask<T> result)
+    {
+        Response.Listener<ApiResult<T>> successListener = new Response.Listener<ApiResult<T>>() {
+            @Override
+            public void onResponse(ApiResult<T> response) {
+                result.run(false, response.isException, response.exceptionCode, response.errorMessage, response.value);
+                Log.w("ApiRequest", "end-ok api: " + url);
+            }
+        };
+        Response.ErrorListener errorListener = new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error)
+            {
+                //if (error != null)
+                result.run(true, false, 0, "connection error za " + url, null);
+                Log.w("ApiRequest", "end-error api: " + url);
+            }
+        };
+
+        Log.w("ApiRequest", "start api: " + url);
+        //final Type t = new TypeToken<ApiResult<T>>(){}.getType();
+
+        Gson gson = MyGson.builder().registerTypeAdapter(ApiResult.class, new JsonDeserializer<ApiResult<T>>(){
+            @Override
+            public ApiResult<T> deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+                JsonObject jObject = json.getAsJsonObject();
+
+                ApiResult<T> x = new ApiResult<T>();
+                x.exceptionCode = jObject.get("exceptionCode").getAsInt();
+                x.errorMessage = jObject.get("exceptionMessage").getAsString();
+                x.isException = jObject.get("isException").getAsBoolean();
+
+                JsonElement jsonElement = jObject.get("value");
+                if(!jsonElement.isJsonNull()) {
+                    JsonObject valueObject = jsonElement.getAsJsonObject();
+                    x.value = context.deserialize(valueObject, result.getType());
+                }
+                return x;
+            }
+        }).create();
+
+        String jsonPost = MyGson.builder().create().toJson(post);
+        GsonRequest<ApiResult<T>> gsonRequest = new GsonRequest<>(url, ApiResult.class, null, jsonPost, successListener, errorListener, Request.Method.GET, gson);
+        MySingleton.getInstance(MyApp.getContext()).addToRequestQueue(gsonRequest);
+    }
 }
