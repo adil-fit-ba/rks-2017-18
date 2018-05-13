@@ -1,0 +1,58 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ba.fit.app.hci_odbrana.Paket2Fragment"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Razrednik"
+
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+       />
+
+    <Spinner
+        android:id="@+id/spinnerRazrednik"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:hint="Razrednik"
+        android:layout_below="@id/textView3"
+        android:inputType="number"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" />
+
+
+
+        <LinearLayout
+            android:layout_below="@+id/spinnerRazrednik"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/nazadButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Nazad" />
+
+            <Button
+                android:id="@+id/zavrsiButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Zavrsi" />
+
+        </LinearLayout>
+
+
+</RelativeLayout>

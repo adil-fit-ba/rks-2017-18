@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="ba.fit.app.hci_odbrana.Paket1Activity">
+    tools:context="ba.fit.app.hci_odbrana.Paket1Fragment">
 
     <TextView
         android:id="@+id/textView"
@@ -18,11 +18,11 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:text="Informacije o pošiljaocu"
+        android:text="Naziv odjeljenja"
         android:textAlignment="textStart" />
 
     <EditText
-        android:id="@+id/posiljaocText"
+        android:id="@+id/OdjeljenjeNazivText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -31,7 +31,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView"
         android:ems="10"
-        android:hint="ime pošiljaoca"
+        android:hint="Naziv odjeljenja"
         android:inputType="textPersonName"
         android:textAlignment="textStart" />
 
@@ -43,12 +43,12 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/posiljaocText"
+        android:layout_below="@+id/OdjeljenjeNazivText"
         android:layout_marginTop="28dp"
-        android:text="Informacije o primaocu" />
+        android:text="Skolska godina" />
 
     <EditText
-        android:id="@+id/primaocText"
+        android:id="@+id/SkolskaGodinaText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -57,7 +57,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView2"
         android:ems="10"
-        android:hint="ime primaoca"
+        android:hint="Skolska godina"
         android:inputType="textPersonName" />
 
     <LinearLayout
@@ -65,7 +65,7 @@
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/primaocText"
+        android:layout_below="@+id/SkolskaGodinaText"
         android:layout_marginTop="17dp"
         android:orientation="horizontal">
 

@@ -5,12 +5,16 @@ import android.util.Log;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.gson.Gson;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.lang.reflect.Type;
 
@@ -66,6 +70,59 @@ public class ApiRequest {
         }).create();
 
         GsonRequest<ApiResult<T>> gsonRequest = new GsonRequest<>(url, ApiResult.class, null, null, successListener, errorListener, Request.Method.GET, gson);
+        MySingleton.getInstance(MyApp.getContext()).addToRequestQueue(gsonRequest);
+    }
+
+    public static <T> void Post(final String url, Object post, final ApiTask<T> result)
+    {
+        Response.Listener<JSONObject> successListener = new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+//                result.run(false, response.isException, response.exceptionCode, response.errorMessage, response.value);
+//                Log.w("ApiRequest", "end-ok api: " + url);
+            }
+        };
+        Response.ErrorListener errorListener = new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error)
+            {
+                //if (error != null)
+                result.run(true, false, 0, "connection error za " + url, null);
+                Log.w("ApiRequest", "end-error api: " + url);
+            }
+        };
+
+        Log.w("ApiRequest", "start api: " + url);
+        //final Type t = new TypeToken<ApiResult<T>>(){}.getType();
+
+        Gson gson = MyGson.builder().registerTypeAdapter(ApiResult.class, new JsonDeserializer<ApiResult<T>>(){
+            @Override
+            public ApiResult<T> deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+                JsonObject jObject = json.getAsJsonObject();
+
+                ApiResult<T> x = new ApiResult<T>();
+                x.exceptionCode = jObject.get("exceptionCode").getAsInt();
+                x.errorMessage = jObject.get("exceptionMessage").getAsString();
+                x.isException = jObject.get("isException").getAsBoolean();
+
+                JsonElement jsonElement = jObject.get("value");
+                if(!jsonElement.isJsonNull()) {
+                    JsonObject valueObject = jsonElement.getAsJsonObject();
+                    x.value = context.deserialize(valueObject, result.getType());
+                }
+                return x;
+            }
+        }).create();
+
+        String jsonPost = MyGson.builder().create().toJson(post);
+        JSONObject jsonObject = null;
+        try {
+            jsonObject = new JSONObject(jsonPost);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest gsonRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, successListener, errorListener);
         MySingleton.getInstance(MyApp.getContext()).addToRequestQueue(gsonRequest);
     }
 }
