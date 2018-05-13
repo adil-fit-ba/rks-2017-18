@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/02_Android_start.iml" filepath="$PROJECT_DIR$/02_Android_start.iml" />
+      <module fileurl="file://C:\Users\Adil Joldic\Source\Repos\rks-2017-18\kodovi\03_ApiResult\02_Android_start.iml" filepath="C:\Users\Adil Joldic\Source\Repos\rks-2017-18\kodovi\03_ApiResult\02_Android_start.iml" />
+      <module fileurl="file://$PROJECT_DIR$/03_ApiResult.iml" filepath="$PROJECT_DIR$/03_ApiResult.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
