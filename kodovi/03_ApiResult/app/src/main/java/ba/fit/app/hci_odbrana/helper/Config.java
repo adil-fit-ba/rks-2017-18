@@ -7,5 +7,5 @@ import android.net.Uri;
 public class Config {
 
   //  public static Uri baseUrl  = Uri.parse("http://adil-pc/api/");
-    public static Uri baseUrl  = Uri.parse("http://d75c3e22.eu.ngrok.io/WebApi/");
+    public static Uri baseUrl  = Uri.parse("http://387de219.eu.ngrok.io/WebApi/");
 }

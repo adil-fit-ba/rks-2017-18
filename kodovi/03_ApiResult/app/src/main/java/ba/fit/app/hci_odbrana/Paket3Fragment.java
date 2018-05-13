@@ -2,8 +2,7 @@ package ba.fit.app.hci_odbrana;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,25 +18,30 @@ import ba.fit.app.hci_odbrana.helper.api.OdjeljenjeIndexVM;
  * Created by adil on 3/19/2018.
  */
 
-public class Paket3Activity extends FragmentActivity {
+public class Paket3Fragment extends Fragment {
 
     private ListView mojListView;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_paket3);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_paket3, container, false);
 
-        mojListView = (ListView) findViewById(R.id.mojListViewID);
+        mojListView = (ListView) view.findViewById(R.id.mojListViewID);
 
         OdjeljenjeApi.Index(new ApiTask<OdjeljenjeIndexVM>() {
             @Override
             public void run(boolean isCommunicationOrParseError, boolean isException, int exceptionCode, String message, OdjeljenjeIndexVM value) {
                 if(!isException)
-                   popuniListView(value);
+                    popuniListView(value);
             }
         });
+
+        return view;
     }
+
+
 
     private void popuniListView(final OdjeljenjeIndexVM value) {
         mojListView.setAdapter(new BaseAdapter() {
@@ -62,7 +66,7 @@ public class Paket3Activity extends FragmentActivity {
 
                 if (convertView == null) {
 
-                    LayoutInflater inflater = (LayoutInflater) Paket3Activity.this
+                    LayoutInflater inflater = (LayoutInflater) getActivity()
                             .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
                     convertView = (View) inflater.inflate(R.layout.stavka_odjeljenje, null);

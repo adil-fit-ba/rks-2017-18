@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ba.fit.app.hci_odbrana.Paket2Activity"
+    tools:context="ba.fit.app.hci_odbrana.Paket2Fragment"
     android:orientation="vertical">
 
     <TextView
