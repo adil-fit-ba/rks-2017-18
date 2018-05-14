@@ -78,7 +78,7 @@ public class ApiRequest {
         Response.Listener<JSONObject> successListener = new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-//                result.run(false, response.isException, response.exceptionCode, response.errorMessage, response.value);
+               result.run(false, false, 0, null, null);
 //                Log.w("ApiRequest", "end-ok api: " + url);
             }
         };
