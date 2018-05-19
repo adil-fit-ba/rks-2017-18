@@ -30,4 +30,6 @@ How do I offer the course?
 Android Developer Fundamentals is offered as an elective course to undergraduate developers by selected universities and colleges in India. If you\'d like to offer Android Developer Fundamentals at your university or college, contact the Google Developers Training team at developer-training-info@google.com.
 
     </string>
+    <string name="drawer_otvoreno">Odaberite stavku</string>
+    <string name="drawer_zatvoreno">eUniverzitet</string>
 </resources>
