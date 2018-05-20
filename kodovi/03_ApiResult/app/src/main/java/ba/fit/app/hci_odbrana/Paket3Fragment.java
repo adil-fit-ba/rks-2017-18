@@ -69,7 +69,7 @@ public class Paket3Fragment extends Fragment {
                     LayoutInflater inflater = (LayoutInflater) getActivity()
                             .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-                    convertView = (View) inflater.inflate(R.layout.stavka_odjeljenje, null);
+                    convertView = (View) inflater.inflate(R.layout.stavka_odjeljenje1, null);
                 }
                 OdjeljenjeIndexVM.Row row = value.rows.get(i);
 

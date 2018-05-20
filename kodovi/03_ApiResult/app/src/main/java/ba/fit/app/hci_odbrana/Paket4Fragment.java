@@ -1,6 +1,5 @@
 package ba.fit.app.hci_odbrana;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,8 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import ba.fit.app.hci_odbrana.helper.ApiTask;
@@ -64,13 +61,10 @@ public class Paket4Fragment extends Fragment {
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
                 // create a new view
                 View v =  LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.stavka_odjeljenje, parent, false);
+                        .inflate(R.layout.stavka_odjeljenje2, parent, false);
 
 
-                RecyclerView.ViewHolder vh = new RecyclerView.ViewHolder(v){
-
-                };
-                return vh;
+                return new RecyclerView.ViewHolder(v){};
             }
 
             @Override
