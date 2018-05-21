@@ -28,3 +28,5 @@ ngrok http 30000 --region=eu -host-header=rewrite
 
 RecylerViewer
 https://www.androidhive.info/2016/01/android-working-with-recycler-view/
+
+0.tcp.eu.ngrok.io:15396
