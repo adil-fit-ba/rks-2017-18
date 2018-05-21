@@ -29,3 +29,6 @@ ngrok http 30000 --region=eu -host-header=rewrite
 https://code.tutsplus.com/hr/tutorials/getting-started-with-recyclerview-and-cardview-on-android--cms-23465
 
 http://0.tcp.eu.ngrok.io:15396
+
+
+0.tcp.eu.ngrok.io:15396
