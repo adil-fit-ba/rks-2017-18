@@ -29,5 +29,6 @@ ngrok http 30000 --region=eu -host-header=rewrite
 https://code.tutsplus.com/hr/tutorials/getting-started-with-recyclerview-and-cardview-on-android--cms-23465
 
 https://infinum.co/the-capsized-eight/top-5-android-libraries-every-android-developer-should-know-about
+https://www.tutorialspoint.com/android/android_broadcast_receivers.htm
 
 81ca2739.eu.ngrok.io
