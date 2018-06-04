@@ -118,7 +118,7 @@ public class MainActivity extends Activity {
             webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         }
 
-        webView.loadUrl(" https://3f2c3839.eu.ngrok.io");
+        webView.loadUrl("https://a.p1700.app.fit.ba");
     }
 
     private File createImageFile() throws IOException {

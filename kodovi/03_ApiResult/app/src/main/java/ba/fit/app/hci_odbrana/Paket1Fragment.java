@@ -28,6 +28,7 @@ public class Paket1Fragment extends Fragment {
 
 
 
+
         Toast.makeText(getActivity(), "Kliknuto dugme dalje", Toast.LENGTH_LONG).show();
 
         daljeButton.setOnClickListener(new View.OnClickListener() {

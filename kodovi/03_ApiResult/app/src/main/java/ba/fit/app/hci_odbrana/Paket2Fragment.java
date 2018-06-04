@@ -79,7 +79,7 @@ public class Paket2Fragment extends Fragment {
                     Toast.makeText(getActivity(), "Odjeljenje je uspješno dodato", Toast.LENGTH_LONG).show();
 
 
-                    Util.otvoriFragmentKaoReplace(getActivity(),R.id.kontejnerID,new Paket4Fragment());
+                    Util.otvoriFragmentKaoReplace(getActivity(),R.id.kontejnerID,new Paket5Fragment());
 
                 }
             }
