@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"  android:layout_width="match_parent">
+
+
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      tools:context=".fragments.PosiljkaAdd1Fragment"
+      android:orientation="vertical"
+      android:padding="@dimen/paddingLayout"
+      >
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pošiljaoc"
+
+        android:textAlignment="center"
+        android:textColor="@color/primary_dark"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ime"
+        android:textColor="@color/primary"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:id="@+id/txtPosiljaocIme"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Prezime"
+        android:textColor="@color/primary"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtPosiljaocPrezime"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Adresa"
+        android:textColor="@color/primary"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtPosiljaocAdresa"
+        />
+
+
+
+
+
+    <Button
+        android:id="@+id/btnPosiljaocPromjeni"
+        android:layout_width="match_parent"
+        android:background="@color/accent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/icons"
+        android:text="Promjeni primaoca" />
+
+    <TextView
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Primaoc"
+        android:textAlignment="center"
+        android:textColor="@color/primary_dark"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        />
+
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ime"
+        android:textColor="@color/primary"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:id="@+id/txtPrimaocIme"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Prezime"
+        android:textColor="@color/primary"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtPrimaocPrezime"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Adresa"
+        android:textColor="@color/primary"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtPrimaocAdresa"
+        />
+
+
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnPrimaocPromjeni"
+        style="?android:attr/borderlessButtonStyle"
+        android:textColor="@color/accent"
+        android:text="Promjeni primaoca"
+        />
+
+    <Button
+        android:id="@+id/btnDalje"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorAccent"
+        android:textColor="@color/icons"
+        android:text="Dalje" />
+
+
+  </LinearLayout>
+</ScrollView>
