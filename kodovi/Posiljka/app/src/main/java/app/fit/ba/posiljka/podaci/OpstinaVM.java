@@ -40,4 +40,9 @@ public class OpstinaVM implements Serializable
     public void setDrzava(String drzava) {
         this.drzava = drzava;
     }
+
+    @Override
+    public String toString() {
+        return naziv + " " + drzava;
+    }
 }

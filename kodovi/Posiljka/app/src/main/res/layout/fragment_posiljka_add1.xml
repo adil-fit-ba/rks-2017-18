@@ -17,7 +17,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Pošiljaoc"
-
         android:textAlignment="center"
         android:textColor="@color/primary_dark"
         android:textSize="24sp"
@@ -35,6 +34,7 @@
         android:layout_height="wrap_content"
         android:enabled="false"
         android:id="@+id/txtPosiljaocIme"
+        android:text=""
         />
 
     <TextView
@@ -47,6 +47,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text=""
         android:id="@+id/txtPosiljaocPrezime"
         />
 
@@ -60,6 +61,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/txtPosiljaocAdresa"
+        android:text=""
         />
 
 
@@ -100,6 +102,7 @@
         android:layout_height="wrap_content"
         android:enabled="false"
         android:id="@+id/txtPrimaocIme"
+        android:text=""
         />
 
     <TextView
@@ -113,6 +116,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/txtPrimaocPrezime"
+        android:text=""
         />
 
     <TextView
@@ -125,6 +129,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/txtPrimaocAdresa"
+        android:text=""
         />
 
 
@@ -134,16 +139,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btnPrimaocPromjeni"
-        style="?android:attr/borderlessButtonStyle"
-        android:textColor="@color/accent"
         android:text="Promjeni primaoca"
+        android:background="@color/accent"
+        android:textColor="@color/icons"
+
         />
 
     <Button
         android:id="@+id/btnDalje"
+        android:layout_marginTop="@dimen/marginLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorAccent"
+        android:background="@color/accent"
         android:textColor="@color/icons"
         android:text="Dalje" />
 

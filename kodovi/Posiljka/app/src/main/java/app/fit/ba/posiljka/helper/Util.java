@@ -1,25 +1,25 @@
 package app.fit.ba.posiljka.helper;
 
 import android.app.Activity;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
+import android.app.DialogFragment;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 
 
 public class Util {
 
     public static void otvoriFragmentKaoReplace(Activity activity, int id, Fragment fragment)
     {
-        final FragmentManager fm = ((FragmentActivity)activity).getSupportFragmentManager();
+        final FragmentManager fm = activity.getFragmentManager();
         final FragmentTransaction fragmentTransaction = fm.beginTransaction();
         fragmentTransaction.replace(id, fragment);
         fragmentTransaction.commit();
     }
 
     public static void otvoriFragmentKaoDijalog(Activity activity, DialogFragment fragment) {
-        final FragmentManager fm = ((FragmentActivity)activity).getSupportFragmentManager();
+        final FragmentManager fm = activity.getFragmentManager();
         fragment.show(fm, "tag");
     }
 }

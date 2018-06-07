@@ -1,10 +1,10 @@
 package app.fit.ba.posiljka.dialogs;
 
 
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,22 +57,29 @@ public class PretragaDialogFragment extends DialogFragment {
         if (getArguments() != null) {
             pMyCallBack = (MyRunnable<KorisnikVM>) getArguments().getSerializable(ARG_PARAM1);
         }
-
-
+        setStyle(DialogFragment.STYLE_NORMAL, R.style.MyFullScreenDialog);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_pretraga_dialog, container, false);
+     //   View view = inflater.inflate(R.layout.fragment_pretraga, container, false);
+
+        View view = inflater.inflate(R.layout.dialog_pretraga, container, false);
+        view.findViewById(R.id.button_close).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
 
 
-        listView = (ListView) view.findViewById(R.id.listView);
-        editText = (EditText) view.findViewById(R.id.editText);
+        listView = view.findViewById(R.id.listView);
+        editText = view.findViewById(R.id.editText);
 
 
-        Button btnPretraga = (Button) view.findViewById(R.id.btnPretraga);
+        Button btnPretraga = view.findViewById(R.id.btnPretraga);
         btnPretraga.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,13 +125,13 @@ public class PretragaDialogFragment extends DialogFragment {
                     view = inflater.inflate(R.layout.stavka_korisnici, viewGroup,false);
                 }
 
-                TextView txtIme = (TextView) view.findViewById(R.id.txtIme);
-                TextView txtAdresa = (TextView) view.findViewById(R.id.txtAdresa);
+                TextView txtIme = (TextView) view.findViewById(R.id.txtFirstLine);
+                TextView txtAdresa = (TextView) view.findViewById(R.id.txtSecondLine);
 
                 KorisnikVM x = podaci.get(i);
 
 
-                txtAdresa.setText(x.getOpstinaVM().getNaziv());
+                txtAdresa.setText(x.getOpstinaVM().toString());
                 txtIme.setText(x.getIme() + " " + x.getPrezime());
 
 
