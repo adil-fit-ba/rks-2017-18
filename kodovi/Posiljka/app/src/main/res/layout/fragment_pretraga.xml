@@ -6,29 +6,19 @@
     tools:context=".dialogs.PretragaDialogFragment">
 
 
-    <EditText
+    <SearchView
         android:id="@+id/editText"
-        android:layout_width="wrap_content"
-        android:layout_toLeftOf="@id/btnPretraga"
-        android:layout_alignParentLeft="true"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Ime korisnika"
-        android:inputType="textPersonName"
+        android:inputType="textNoSuggestions|textVisiblePassword"
+        android:queryHint="Ime"
         android:text="" />
-<Button
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/btnPretraga"
-    android:text="Trazi"
-  android:width="30dp"
-android:layout_alignParentRight="true"
-    />
+
     <ListView
         android:layout_below="@id/editText"
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
 
     </ListView>

@@ -13,7 +13,9 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -35,7 +37,7 @@ public class PretragaDialogFragment extends DialogFragment {
 
     private MyRunnable<KorisnikVM> pMyCallBack;
     private ListView listView;
-    private EditText editText;
+    private SearchView searchView;
 
 
     public PretragaDialogFragment() {
@@ -76,23 +78,33 @@ public class PretragaDialogFragment extends DialogFragment {
 
 
         listView = view.findViewById(R.id.listView);
-        editText = view.findViewById(R.id.editText);
+        searchView = view.findViewById(R.id.editText);
 
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
-        Button btnPretraga = view.findViewById(R.id.btnPretraga);
-        btnPretraga.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                do_btnClick();
+            public boolean onQueryTextSubmit(String query) {
+                Toast.makeText(getActivity(), query, Toast.LENGTH_LONG).show();
+                do_btnClick(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                Toast.makeText(getActivity(), newText, Toast.LENGTH_LONG).show();
+                do_btnClick(newText);
+                return false;
             }
         });
+        searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
+
+        popuniPodatke("");
 
         return view;
     }
 
-    private void do_btnClick() {
+    private void do_btnClick(String query) {
 
-        String query = editText.getText().toString();
         popuniPodatke(query);
     }
 

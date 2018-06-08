@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_height="match_parent"
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"  android:layout_width="match_parent">
 
 
   <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:tools="http://schemas.android.com/tools"
       android:layout_width="match_parent"
-      android:layout_height="match_parent"
+      android:layout_height="wrap_content"
       tools:context=".fragments.PosiljkaAdd1Fragment"
       android:orientation="vertical"
       android:padding="@dimen/paddingLayout"
@@ -16,40 +18,36 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pošiljaoc"
-        android:textAlignment="center"
-        android:textColor="@color/primary_dark"
-        android:textSize="24sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="Ime"
         android:textColor="@color/primary"
         />
 
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+     >
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:enabled="false"
-        android:id="@+id/txtPosiljaocIme"
+        android:id="@+id/txtIme"
+        android:layout_alignParentLeft="true"
         android:text=""
         />
 
-    <TextView
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/imgAdd"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Prezime"
-        android:textColor="@color/primary"
-        />
+        android:layout_alignParentRight="true"
+        app:srcCompat="@drawable/ic_user_silhouette"
+        tools:layout_height="36dp"
+        tools:layout_width="36dp" />
+  </RelativeLayout>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:id="@+id/txtPosiljaocPrezime"
-        />
+
+
+
 
     <TextView
         android:layout_width="match_parent"
@@ -60,90 +58,11 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtPosiljaocAdresa"
-        android:text=""
-        />
-
-
-
-
-
-    <Button
-        android:id="@+id/btnPosiljaocPromjeni"
-        android:layout_width="match_parent"
-        android:background="@color/accent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/icons"
-        android:text="Promjeni primaoca" />
-
-    <TextView
-        android:layout_marginTop="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Primaoc"
-        android:textAlignment="center"
-        android:textColor="@color/primary_dark"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        />
-
-
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Ime"
-        android:textColor="@color/primary"
-        />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/txtAdresa"
         android:enabled="false"
-        android:id="@+id/txtPrimaocIme"
         android:text=""
         />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Prezime"
-        android:textColor="@color/primary"
-        />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtPrimaocPrezime"
-        android:text=""
-        />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Adresa"
-        android:textColor="@color/primary"
-        />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtPrimaocAdresa"
-        android:text=""
-        />
-
-
-
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnPrimaocPromjeni"
-        android:text="Promjeni primaoca"
-        android:background="@color/accent"
-        android:textColor="@color/icons"
-
-        />
 
     <Button
         android:id="@+id/btnDalje"

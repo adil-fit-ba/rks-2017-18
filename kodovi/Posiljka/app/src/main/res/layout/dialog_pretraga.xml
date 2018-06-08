@@ -29,7 +29,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="Dialog title"
+                android:text="Odaberite korisnika"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
                 android:textColor="@android:color/white" />
 
@@ -41,22 +41,13 @@
                 android:gravity="center"
                 android:paddingLeft="2dp"
                 android:paddingRight="2dp"
-                android:text="Action"
+                android:text="Novi"
                 android:textColor="@android:color/white" />
 
         </LinearLayout>
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.widget.NestedScrollView
-        android:id="@+id/nested_scroll_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none"
-        android:scrollingCache="true">
-
-        <include layout="@layout/fragment_pretraga"/>
-
-    </android.support.v4.widget.NestedScrollView>
+    <include layout="@layout/fragment_pretraga"/>
 
 </LinearLayout>

@@ -32,8 +32,8 @@ public class PosiljkaAdd2Fragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static PosiljkaAdd1Fragment newInstance(PosiljkaVM posiljkaVM) {
-        PosiljkaAdd1Fragment fragment = new PosiljkaAdd1Fragment();
+    public static PosiljkaAdd2Fragment newInstance(PosiljkaVM posiljkaVM) {
+        PosiljkaAdd2Fragment fragment = new PosiljkaAdd2Fragment();
         Bundle args = new Bundle();
         args.putSerializable(ARG_POSILJKA, posiljkaVM);
         fragment.setArguments(args);
@@ -46,6 +46,8 @@ public class PosiljkaAdd2Fragment extends Fragment {
         if (getArguments() != null) {
             posiljkaVM = (PosiljkaVM) getArguments().getSerializable(ARG_POSILJKA);
         }
+
+        getActivity().setTitle("Podaci o paketu");
     }
 
     @Override
