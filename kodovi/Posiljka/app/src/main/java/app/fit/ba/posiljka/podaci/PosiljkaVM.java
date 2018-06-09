@@ -7,7 +7,6 @@ import java.io.Serializable;
  */
 
 public class PosiljkaVM implements Serializable {
-	private static int brojac;
     public KorisnikVM primaoc;
     public float masa;
     public String napomena;
@@ -20,7 +19,6 @@ public class PosiljkaVM implements Serializable {
         this.masa = masa;
         this.iznos = iznos;
         this.napomena = napomena;
-        brojPosiljke = brojac++;
     }
 
     public PosiljkaVM()

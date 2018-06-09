@@ -86,7 +86,7 @@ try {
     this.posiljkaVM.napomena = txtNapomena.getText().toString();
     this.posiljkaVM.iznos = Float.parseFloat(txtIznos.getText().toString());
     this.posiljkaVM.placaPouzecem = switchPlatiPouzecem.isSelected();
-    Storage.getPosiljke().add(this.posiljkaVM);
+    Storage.addPosiljka(this.posiljkaVM);
     Util.otvoriFragmentKaoReplace(getActivity(), R.id.fragmentPlace, PosiljkaListFragment.newInstance());
 }
 catch (Exception e)

@@ -3,12 +3,15 @@ package app.fit.ba.posiljka.fragments;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -70,7 +73,7 @@ public class PosiljkaListFragment extends Fragment {
 
         final List<PosiljkaVM> posiljke = Storage.getPosiljke();
 
-        lvPopisPaketa.setAdapter(new BaseAdapter() {
+        final BaseAdapter adapter = new BaseAdapter() {
             @Override
             public int getCount() {
                 return posiljke.size();
@@ -90,10 +93,9 @@ public class PosiljkaListFragment extends Fragment {
             public View getView(int position, View view, ViewGroup viewGroup) {
                 PosiljkaVM x = posiljke.get(position);
 
-                if(view==null)
-                {
-                    LayoutInflater inflater = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                    view = inflater.inflate(R.layout.stavka_posiljke, viewGroup,false);
+                if (view == null) {
+                    LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    view = inflater.inflate(R.layout.stavka_posiljke, viewGroup, false);
                 }
 
                 TextView txtFirstLine = view.findViewById(R.id.txtFirstLine);
@@ -108,6 +110,35 @@ public class PosiljkaListFragment extends Fragment {
                 txtMeta.setText("broj: " + x.brojPosiljke);
 
                 return view;
+            }
+        };
+        lvPopisPaketa.setAdapter(adapter);
+
+        lvPopisPaketa.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+
+                PosiljkaVM x = posiljke.get(position);
+                final AlertDialog.Builder adb = new AlertDialog.Builder(getActivity());
+                adb.setTitle("Pitanje? ");
+                adb.setMessage("Da li obrisati pošiljku br " + x.brojPosiljke + "?");
+                adb.setIcon(android.R.drawable.ic_dialog_alert);
+                adb.setPositiveButton("Da", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        posiljke.remove(position);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+
+                adb.setNegativeButton("Ne", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                adb.setCancelable(false);
+                adb.show();
+
+                return true;
             }
         });
     }

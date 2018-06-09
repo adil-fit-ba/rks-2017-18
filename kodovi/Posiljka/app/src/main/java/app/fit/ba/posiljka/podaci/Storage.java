@@ -8,6 +8,8 @@ import java.util.List;
  */
 public class Storage {
     private static List<OpstinaVM> opstine;
+    private static int brojacPosiljki;
+
     public static List<OpstinaVM> getOpstine()
     {
         if (opstine == null)
@@ -68,5 +70,10 @@ public class Storage {
         }
 
         return rezultat;
+    }
+
+    public static void addPosiljka(PosiljkaVM posiljkaVM) {
+        posiljkaVM.brojPosiljke = brojacPosiljki++;
+        getPosiljke().add(posiljkaVM);
     }
 }
