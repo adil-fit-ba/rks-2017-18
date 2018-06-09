@@ -3,6 +3,7 @@ package app.fit.ba.posiljka.fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,15 +27,11 @@ import app.fit.ba.posiljka.podaci.PosiljkaVM;
  */
 public class PosiljkaAdd1Fragment extends Fragment {
 
-    public enum KorisnikTip implements Serializable{
-        Posiljaoc, Primaoc
-    }
 
     private static final String ARG_POSILJKA = "posiljka_key";
     private static final String ARG_TIP = "tip_key";
 
     private PosiljkaVM posiljkaVM;
-    private KorisnikTip korisnikTip = null;
     private EditText txtIme;
     private EditText txtAdresa;
 
@@ -43,11 +40,10 @@ public class PosiljkaAdd1Fragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static PosiljkaAdd1Fragment newInstance(PosiljkaVM posiljkaVM, KorisnikTip korisnikTip) {
+    public static PosiljkaAdd1Fragment newInstance(PosiljkaVM posiljkaVM) {
         PosiljkaAdd1Fragment fragment = new PosiljkaAdd1Fragment();
         Bundle args = new Bundle();
         args.putSerializable(ARG_POSILJKA, posiljkaVM);
-        args.putSerializable(ARG_TIP, korisnikTip);
         fragment.setArguments(args);
         return fragment;
     }
@@ -62,19 +58,12 @@ public class PosiljkaAdd1Fragment extends Fragment {
         if (getArguments() != null)
         {
             posiljkaVM = (PosiljkaVM) getArguments().getSerializable(ARG_POSILJKA);
-            korisnikTip = (KorisnikTip) getArguments().getSerializable(ARG_TIP);
         }
 
         if (posiljkaVM == null)
             posiljkaVM = new PosiljkaVM();
 
-        if(korisnikTip == null)
-            korisnikTip = KorisnikTip.Posiljaoc;
-
-        if (korisnikTip == KorisnikTip.Posiljaoc)
-            getActivity().setTitle("Pošiljaoc");
-        else
-            getActivity().setTitle("Primaoc");
+        getActivity().setTitle("Primaoc");
 
 
     }
@@ -112,7 +101,7 @@ public class PosiljkaAdd1Fragment extends Fragment {
         MyRunnable<KorisnikVM> myCallBack = new MyRunnable<KorisnikVM>() {
             @Override
             public void run(KorisnikVM result) {
-                posiljkaVM.posljiaoc = result;
+                posiljkaVM.primaoc = result;
                 txtIme.setText(result.getIme() + " " + result.getPrezime());
                 txtAdresa.setText(result.getOpstinaVM().toString());
             }
@@ -124,13 +113,13 @@ public class PosiljkaAdd1Fragment extends Fragment {
 
     private void do_btnDaljeClick() {
 
-        Fragment fragment;
-
-        if(korisnikTip == KorisnikTip.Posiljaoc)
-            fragment= PosiljkaAdd1Fragment.newInstance(posiljkaVM, KorisnikTip.Primaoc);
+        if (posiljkaVM.primaoc == null)
+        {
+            Snackbar.make(getView(),"Za nastavak morate odabrati primaoca!",  Snackbar.LENGTH_LONG).show();
+        }
         else
-            fragment= PosiljkaAdd2Fragment.newInstance(posiljkaVM);
-
-        Util.otvoriFragmentKaoReplace(getActivity(), R.id.fragmentPlace, fragment);
+        {
+            Util.otvoriFragmentKaoReplace(getActivity(), R.id.fragmentPlace, PosiljkaAdd2Fragment.newInstance(posiljkaVM));
+        }
     }
 }

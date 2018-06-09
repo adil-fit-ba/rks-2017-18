@@ -5,7 +5,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"  android:layout_width="match_parent">
 
 
-  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:tools="http://schemas.android.com/tools"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
@@ -19,33 +19,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Ime"
+        android:layout_alignParentTop="true"
         android:textColor="@color/primary"
+        android:id="@+id/viewIme"
+
         />
 
-  <RelativeLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-     >
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:enabled="false"
         android:id="@+id/txtIme"
-        android:layout_alignParentLeft="true"
+        android:layout_below="@id/viewIme"
         android:text=""
         />
 
     <ImageView
         android:id="@+id/imgAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        app:srcCompat="@drawable/ic_user_silhouette"
-        tools:layout_height="36dp"
-        tools:layout_width="36dp" />
-  </RelativeLayout>
-
-
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+android:layout_alignParentRight="true"
+        android:background="@drawable/edittext_border"
+        app:srcCompat="@drawable/ic_user_silhouette" />
 
 
 
@@ -53,6 +48,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Adresa"
+        android:layout_below="@id/txtIme"
+android:id="@+id/viewAdresa"
         android:textColor="@color/primary"
         />
     <EditText
@@ -60,6 +57,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/txtAdresa"
         android:enabled="false"
+        android:layout_below="@+id/viewAdresa"
         android:text=""
         />
 
@@ -71,8 +69,9 @@
         android:layout_height="wrap_content"
         android:background="@color/accent"
         android:textColor="@color/icons"
+        android:layout_below="@+id/txtAdresa"
         android:text="Dalje" />
 
 
-  </LinearLayout>
+  </RelativeLayout>
 </ScrollView>

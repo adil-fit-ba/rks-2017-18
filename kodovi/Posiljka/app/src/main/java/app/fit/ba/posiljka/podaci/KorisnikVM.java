@@ -40,4 +40,8 @@ public class KorisnikVM implements Serializable
     public void setOpstinaVM(OpstinaVM opstinaVM) {
         this.opstinaVM = opstinaVM;
     }
+
+    public String getImePrezime() {
+        return ime + " " + prezime;
+    }
 }

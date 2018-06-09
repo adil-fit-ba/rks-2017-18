@@ -2,16 +2,23 @@ package app.fit.ba.posiljka.fragments;
 
 
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.List;
 
 import app.fit.ba.posiljka.R;
 import app.fit.ba.posiljka.helper.Util;
 import app.fit.ba.posiljka.podaci.PosiljkaVM;
+import app.fit.ba.posiljka.podaci.Storage;
 
 
 /**
@@ -21,6 +28,8 @@ import app.fit.ba.posiljka.podaci.PosiljkaVM;
  */
 public class PosiljkaListFragment extends Fragment {
 
+
+    private ListView lvPopisPaketa;
 
     public PosiljkaListFragment() {
         // Required empty public constructor
@@ -44,6 +53,8 @@ public class PosiljkaListFragment extends Fragment {
 
 
         FloatingActionButton fab = view.findViewById(R.id.fab);
+        lvPopisPaketa = view.findViewById(R.id.lvPopisPaketa);
+        popuniPodatke();
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,6 +64,52 @@ public class PosiljkaListFragment extends Fragment {
 
 
         return view;
+    }
+
+    private void popuniPodatke() {
+
+        final List<PosiljkaVM> posiljke = Storage.getPosiljke();
+
+        lvPopisPaketa.setAdapter(new BaseAdapter() {
+            @Override
+            public int getCount() {
+                return posiljke.size();
+            }
+
+            @Override
+            public Object getItem(int position) {
+                return null;
+            }
+
+            @Override
+            public long getItemId(int position) {
+                return 0;
+            }
+
+            @Override
+            public View getView(int position, View view, ViewGroup viewGroup) {
+                PosiljkaVM x = posiljke.get(position);
+
+                if(view==null)
+                {
+                    LayoutInflater inflater = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    view = inflater.inflate(R.layout.stavka_posiljke, viewGroup,false);
+                }
+
+                TextView txtFirstLine = view.findViewById(R.id.txtFirstLine);
+                TextView txtSecondLine = view.findViewById(R.id.txtSecondLine);
+                TextView txtThirdLine = view.findViewById(R.id.txtThirdLine);
+                TextView txtMeta = view.findViewById(R.id.txtMeta);
+
+
+                txtFirstLine.setText(x.primaoc.getImePrezime());
+                txtSecondLine.setText(x.primaoc.getOpstinaVM().toString());
+                txtThirdLine.setText(x.masa + " kg  ");
+                txtMeta.setText("broj: " + x.brojPosiljke);
+
+                return view;
+            }
+        });
     }
 
     private void do_fabClick() {

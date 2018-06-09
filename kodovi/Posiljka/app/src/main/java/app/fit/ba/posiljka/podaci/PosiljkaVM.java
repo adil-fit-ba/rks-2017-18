@@ -8,22 +8,19 @@ import java.io.Serializable;
 
 public class PosiljkaVM implements Serializable {
 	private static int brojac;
-    public KorisnikVM posljiaoc;
     public KorisnikVM primaoc;
     public float masa;
-    public float duzina;
-    public float sirina;
-    public float visina;
-	public int brojPosiljke;
+    public String napomena;
+    public int brojPosiljke;
+    public float iznos;
+    public boolean placaPouzecem;
 
-    public PosiljkaVM(KorisnikVM posljiaoc, KorisnikVM primaoc, float masa, float duzina, float sirina, float visina) {
-        this.posljiaoc = posljiaoc;
+    public PosiljkaVM(KorisnikVM primaoc, float masa, float iznos, String napomena) {
         this.primaoc = primaoc;
         this.masa = masa;
-        this.duzina = duzina;
-        this.sirina = sirina;
-        this.visina = visina;
-		brojPosiljke = brojac++;
+        this.iznos = iznos;
+        this.napomena = napomena;
+        brojPosiljke = brojac++;
     }
 
     public PosiljkaVM()

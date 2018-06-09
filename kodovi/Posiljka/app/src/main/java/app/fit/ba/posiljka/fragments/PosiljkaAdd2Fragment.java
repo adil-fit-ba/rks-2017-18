@@ -5,14 +5,18 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Switch;
 
 import app.fit.ba.posiljka.R;
 import app.fit.ba.posiljka.helper.Util;
 import app.fit.ba.posiljka.podaci.PosiljkaVM;
+import app.fit.ba.posiljka.podaci.Storage;
 
 
 /**
@@ -26,6 +30,10 @@ public class PosiljkaAdd2Fragment extends Fragment {
     private static final String ARG_POSILJKA = "posiljka_key";
 
     private PosiljkaVM posiljkaVM;
+    private EditText txtMasa;
+    private EditText txtNapomena;
+    private EditText txtIznos;
+    private Switch switchPlatiPouzecem;
 
 
     public PosiljkaAdd2Fragment() {
@@ -56,8 +64,12 @@ public class PosiljkaAdd2Fragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_posiljka_add2, container, false);
 
-        Button btnDalje= (Button) view.findViewById(R.id.btnDalje);
+        txtMasa = view.findViewById(R.id.txtMasa);
+        txtNapomena = view.findViewById(R.id.txtNapomena);
+        txtIznos = view.findViewById(R.id.txtIznos);
+        switchPlatiPouzecem = view.findViewById(R.id.switchPlatiPouzecem);
 
+        Button btnDalje= view.findViewById(R.id.btnDalje);
         btnDalje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,28 +81,18 @@ public class PosiljkaAdd2Fragment extends Fragment {
     }
 
     private void do_btnDaljeClick() {
-
-        final AlertDialog.Builder adb = new AlertDialog.Builder(getActivity());
-        adb.setTitle("Pitanje? ");
-        adb.setMessage("Da li želite snimiti?\n");
-        adb.setIcon(android.R.drawable.ic_dialog_alert);
-        adb.setPositiveButton("Da", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                Util.otvoriFragmentKaoReplace(getActivity(), R.id.fragmentPlace, PosiljkaListFragment.newInstance());
-
-            }
-
-        });
-
-        adb.setNegativeButton("Ne", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-                // moveTaskToBack(true);
-            }
-        });
-        adb.setCancelable(false);
-        adb.show();
-
+try {
+    this.posiljkaVM.masa = Float.parseFloat(txtMasa.getText().toString());
+    this.posiljkaVM.napomena = txtNapomena.getText().toString();
+    this.posiljkaVM.iznos = Float.parseFloat(txtIznos.getText().toString());
+    this.posiljkaVM.placaPouzecem = switchPlatiPouzecem.isSelected();
+    Storage.getPosiljke().add(this.posiljkaVM);
+    Util.otvoriFragmentKaoReplace(getActivity(), R.id.fragmentPlace, PosiljkaListFragment.newInstance());
+}
+catch (Exception e)
+{
+    Snackbar.make(getView(),"Greška: " + e.getMessage(),  Snackbar.LENGTH_LONG).show();
+}
      }
 
 }

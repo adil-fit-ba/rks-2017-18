@@ -47,10 +47,11 @@ public class Storage {
         if (posilje == null)
         {
             posilje = new ArrayList<>();
-            posilje.add(new PosiljkaVM(korisnici.get(0), korisnici.get(1), 15, 5, 3, 2));
-            posilje.add(new PosiljkaVM(korisnici.get(2), korisnici.get(3), 15, 5, 3, 20));
-            posilje.add(new PosiljkaVM(korisnici.get(3), korisnici.get(0), 105, 15, 3, 2));
-            posilje.add(new PosiljkaVM(korisnici.get(0), korisnici.get(1), 5, 5, 13, 2));
+            posilje.add(new PosiljkaVM(getKorisnici().get(0), 15, 5, "Pazi, lomljivo"));
+            posilje.add(new PosiljkaVM(getKorisnici().get(2), 15, 5, ""));
+            posilje.add(new PosiljkaVM(getKorisnici().get(3), 105, 15, "Uspravno držati"));
+            posilje.add(new PosiljkaVM(getKorisnici().get(0), 5, 5, ""));
+            posilje.add(new PosiljkaVM(getKorisnici().get(2), 51, 5, ""));
 
         }
         return posilje;
