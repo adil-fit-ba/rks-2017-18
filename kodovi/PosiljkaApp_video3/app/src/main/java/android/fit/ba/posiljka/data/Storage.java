@@ -1,4 +1,4 @@
-package app.fit.ba.posiljka.data;
+package android.fit.ba.posiljka.data;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,8 +77,7 @@ public class Storage {
         getPosiljke().add(posiljkaVM);
     }
 
-
-    public static void addKorisnik(KorisnikVM korisnikVM) {
-        getKorisnici().add(korisnikVM);
+    public static void removePosiljka(PosiljkaVM x) {
+        getPosiljke().remove(x);
     }
 }

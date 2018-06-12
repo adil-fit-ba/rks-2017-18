@@ -1,29 +1,25 @@
-package app.fit.ba.posiljka.dialogs;
+package android.fit.ba.posiljka.fragments;
 
 
 import android.app.DialogFragment;
-import android.app.Fragment;
 import android.content.Context;
+import android.fit.ba.posiljka.data.KorisnikVM;
+import android.fit.ba.posiljka.data.Storage;
+import android.fit.ba.posiljka.helper.MyRunnable;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import android.fit.ba.posiljka.R;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
-
-import app.fit.ba.posiljka.R;
-import app.fit.ba.posiljka.helper.MyFragmentUtils;
-import app.fit.ba.posiljka.helper.MyRunnable;
-import app.fit.ba.posiljka.data.KorisnikVM;
-import app.fit.ba.posiljka.data.Storage;
-
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,25 +27,18 @@ import app.fit.ba.posiljka.data.Storage;
  * create an instance of this fragment.
  */
 public class PretragaDialogFragment extends DialogFragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
 
-    private MyRunnable<KorisnikVM> pMyCallBack;
+
+    public static final String NEKI_KEY = "neki_key";
     private ListView listView;
     private SearchView searchView;
-    private Button btnNovi;
+    private MyRunnable<KorisnikVM> callback;
 
-
-    public PretragaDialogFragment() {
-        // Required empty public constructor
-    }
-
-
-    public static PretragaDialogFragment newInstance(MyRunnable<KorisnikVM> myCallBack) {
+    // TODO: Rename and change types and number of parameters
+    public static PretragaDialogFragment newInstance(MyRunnable myCallback) {
         PretragaDialogFragment fragment = new PretragaDialogFragment();
         Bundle args = new Bundle();
-        args.putSerializable(ARG_PARAM1, myCallBack);
+        args.putSerializable(NEKI_KEY, myCallback);
         fragment.setArguments(args);
         return fragment;
     }
@@ -58,74 +47,44 @@ public class PretragaDialogFragment extends DialogFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            pMyCallBack = (MyRunnable<KorisnikVM>) getArguments().getSerializable(ARG_PARAM1);
+            callback = (MyRunnable<KorisnikVM>) getArguments().getSerializable(NEKI_KEY);
         }
-        setStyle(DialogFragment.STYLE_NORMAL, R.style.MyFullScreenDialog);
+
+        setStyle(STYLE_NORMAL, R.style.MojDialog );
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-     //   View view = inflater.inflate(R.layout.fragment_pretraga, container, false);
-
         View view = inflater.inflate(R.layout.dialog_pretraga, container, false);
-        view.findViewById(R.id.button_close).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dismiss();
-            }
-        });
-
 
         listView = view.findViewById(R.id.listView);
-        
         searchView = view.findViewById(R.id.editText);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Toast.makeText(getActivity(), query, Toast.LENGTH_LONG).show();
-                do_btnClick(query);
+                do_btnTraziClick(query);
                 return false;
             }
 
             @Override
-            public boolean onQueryTextChange(String newText) {
-                Toast.makeText(getActivity(), newText, Toast.LENGTH_LONG).show();
-                do_btnClick(newText);
+            public boolean onQueryTextChange(String query) {
+                do_btnTraziClick(query);
                 return false;
             }
         });
-        searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
-
-
-        Button btnNovi = view.findViewById(R.id.btnNovi);
-        btnNovi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                do_btnNovi();        
-            }
-        });
-        
+        searchView.setIconifiedByDefault(false);
         popuniPodatke("");
 
         return view;
     }
 
-    private void do_btnNovi() {
-
-        getDialog().dismiss();
-        MyFragmentUtils.openAsDialog(getActivity(), PrimaocNoviDialogFragment.newInstance(pMyCallBack));
-    }
-
-    private void do_btnClick(String query) {
-
+    private void do_btnTraziClick(String query) {
         popuniPodatke(query);
     }
 
     private void popuniPodatke(String query) {
-
         final List<KorisnikVM> podaci = Storage.getKorisniciByIme(query);
 
         listView.setAdapter(new BaseAdapter() {
@@ -135,17 +94,17 @@ public class PretragaDialogFragment extends DialogFragment {
             }
 
             @Override
-            public Object getItem(int i) {
+            public Object getItem(int position) {
                 return null;
             }
 
             @Override
-            public long getItemId(int i) {
+            public long getItemId(int position) {
                 return 0;
             }
 
             @Override
-            public View getView(int i, View view, ViewGroup viewGroup) {
+            public View getView(int position, View view, ViewGroup viewGroup) {
 
                 if(view==null)
                 {
@@ -156,7 +115,7 @@ public class PretragaDialogFragment extends DialogFragment {
                 TextView txtIme = (TextView) view.findViewById(R.id.txtFirstLine);
                 TextView txtAdresa = (TextView) view.findViewById(R.id.txtSecondLine);
 
-                KorisnikVM x = podaci.get(i);
+                KorisnikVM x = podaci.get(position);
 
 
                 txtAdresa.setText(x.getOpstinaVM().toString());
@@ -169,17 +128,12 @@ public class PretragaDialogFragment extends DialogFragment {
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 KorisnikVM x = podaci.get(position);
-
-                pMyCallBack.run(x);
                 getDialog().dismiss();
-
+                callback.run(x);
             }
         });
     }
-
-
 
 }

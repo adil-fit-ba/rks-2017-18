@@ -29,25 +29,16 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="Odaberite korisnika"
+                android:text="Novi korisnik"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
                 android:textColor="@android:color/white" />
 
-            <Button
-                android:id="@+id/btnNovi"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:paddingLeft="2dp"
-                android:paddingRight="2dp"
-                android:text="Novi"
-                android:textColor="@android:color/white" />
+
 
         </LinearLayout>
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/fragment_pretraga"/>
+    <include layout="@layout/fragment_primaoc_novi"/>
 
 </LinearLayout>
