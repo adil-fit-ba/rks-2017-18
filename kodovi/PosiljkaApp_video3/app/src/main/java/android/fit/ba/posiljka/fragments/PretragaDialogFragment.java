@@ -5,6 +5,7 @@ import android.app.DialogFragment;
 import android.content.Context;
 import android.fit.ba.posiljka.data.KorisnikVM;
 import android.fit.ba.posiljka.data.Storage;
+import android.fit.ba.posiljka.helper.MyFragmentUtils;
 import android.fit.ba.posiljka.helper.MyRunnable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.fit.ba.posiljka.R;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -75,9 +77,30 @@ public class PretragaDialogFragment extends DialogFragment {
             }
         });
         searchView.setIconifiedByDefault(false);
+        view.findViewById(R.id.btnNovi).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                do_btnNovi();
+            }
+        });
+        view.findViewById(R.id.button_close).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               do_btnClose();
+            }
+        });
         popuniPodatke("");
 
         return view;
+    }
+
+    private void do_btnClose() {
+        dismiss();
+    }
+
+    private void do_btnNovi() {
+        getDialog().dismiss();
+        MyFragmentUtils.openAsDialog(getActivity(), PrimaocNoviDialogFragment.newInstance(callback));
     }
 
     private void do_btnTraziClick(String query) {

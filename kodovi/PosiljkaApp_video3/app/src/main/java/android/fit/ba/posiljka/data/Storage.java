@@ -80,4 +80,8 @@ public class Storage {
     public static void removePosiljka(PosiljkaVM x) {
         getPosiljke().remove(x);
     }
+
+    public static void addKorisnik(KorisnikVM korisnikVM) {
+        getKorisnici().add(korisnikVM);
+    }
 }
