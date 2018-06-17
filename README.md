@@ -41,3 +41,5 @@ https://infinum.co/the-capsized-eight/top-5-android-libraries-every-android-deve
 broadcast receivers
 https://www.tutorialspoint.com/android/android_broadcast_receivers.htm
 
+asp.net core 2.1 as webapi
+https://docs.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-2.1
