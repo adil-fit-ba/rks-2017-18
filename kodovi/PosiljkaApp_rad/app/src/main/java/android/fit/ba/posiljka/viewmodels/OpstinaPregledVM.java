@@ -1,10 +1,11 @@
-﻿package android.fit.ba.posiljka.viewmodels;
+package android.fit.ba.posiljka.viewmodels;
 
 import java.util.List;
 
 public class OpstinaPregledVM
     {
-       public  static class Row{
+       public static class Row
+       {
            public int id ;
            public String naziv;
            public String drzava ;

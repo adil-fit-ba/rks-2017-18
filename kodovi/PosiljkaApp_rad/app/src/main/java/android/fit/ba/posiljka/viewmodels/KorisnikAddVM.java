@@ -1,4 +1,4 @@
-﻿package android.fit.ba.posiljka.viewmodels;
+package android.fit.ba.posiljka.viewmodels;
 
 public class KorisnikAddVM
     {

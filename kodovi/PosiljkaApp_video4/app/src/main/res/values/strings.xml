@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Posiljka</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ime_novi">Ime</string>
+    <string name="snimi_button">Snimi</string>
+</resources>

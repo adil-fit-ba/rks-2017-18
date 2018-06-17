@@ -1,10 +1,16 @@
-﻿package android.fit.ba.posiljka.viewmodels;
+package android.fit.ba.posiljka.viewmodels;
+
+import java.util.List;
 
 public class KorisnikPregledVM
     {
-        public Integer id;
-        public String ime;
-        public String prezime;
-        public String opstina;
-        public String drzava;
+        public static class Row
+        {
+            public Integer id;
+            public String ime;
+            public String prezime;
+            public String opstina;
+            public String drzava;
+        }
+        public List<Row> rows;
     }
