@@ -1,7 +1,10 @@
 package android.fit.ba.posiljka.data;
 
+import android.fit.ba.posiljka.helper.MyObjects;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by Adil on 18/06/2016.
@@ -33,12 +36,12 @@ public class Storage {
         if (korisnici == null)
         {
             korisnici = new ArrayList<>();
-            korisnici.add(new KorisnikVM("Emina", "Obradovic", getOpstine().get(0)));
-            korisnici.add(new KorisnikVM("Adil", "Joldic", getOpstine().get(7)));
-            korisnici.add(new KorisnikVM("Larisa", "Dedović", getOpstine().get(7)));
-            korisnici.add(new KorisnikVM("Elmin", "Sudic", getOpstine().get(5)));
-            korisnici.add(new KorisnikVM("Maria", "Herceg", getOpstine().get(2)));
-            korisnici.add(new KorisnikVM("Fuad", "Dedić", getOpstine().get(2)));
+            korisnici.add(new KorisnikVM("emina", "test","Emina", "Obradovic", getOpstine().get(0)));
+            korisnici.add(new KorisnikVM("adil", "test","Adil", "Joldic", getOpstine().get(7)));
+            korisnici.add(new KorisnikVM("larisa", "test","Larisa", "Dedović", getOpstine().get(7)));
+            korisnici.add(new KorisnikVM("elmin", "test","Elmin", "Sudic", getOpstine().get(5)));
+            korisnici.add(new KorisnikVM("maria", "test","Maria", "Herceg", getOpstine().get(2)));
+            korisnici.add(new KorisnikVM("fuad", "test","Fuad", "Dedić", getOpstine().get(2)));
         }
         return korisnici;
     }
@@ -70,6 +73,15 @@ public class Storage {
         }
 
         return rezultat;
+    }
+
+    public static KorisnikVM LoginCheck(String username, String password)
+    {
+        for (KorisnikVM x : getKorisnici()) {
+            if (MyObjects.equals(x.getUsername(), username) && MyObjects.equals(x.getPassword(), password))
+                return x;
+        }
+        return null;
     }
 
     public static void addPosiljka(PosiljkaVM posiljkaVM) {

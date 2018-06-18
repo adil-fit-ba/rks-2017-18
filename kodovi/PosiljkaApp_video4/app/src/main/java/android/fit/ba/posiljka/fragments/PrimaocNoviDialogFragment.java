@@ -111,7 +111,7 @@ public class PrimaocNoviDialogFragment extends DialogFragment {
         int position = spinnerOpstina.getSelectedItemPosition();
         OpstinaVM x = opstine.get(position);
 
-        KorisnikVM korisnikVM = new KorisnikVM(txtIme.getText().toString(), txtPrezime.getText().toString(), x);
+        KorisnikVM korisnikVM = new KorisnikVM(txtIme.getText().toString(), "test", txtIme.getText().toString(), txtPrezime.getText().toString(), x);
 
         Storage.addKorisnik(korisnikVM);
 

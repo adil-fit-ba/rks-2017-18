@@ -2,11 +2,14 @@ package android.fit.ba.posiljka.fragments;
 
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.fit.ba.posiljka.data.PosiljkaVM;
 import android.fit.ba.posiljka.data.Storage;
 import android.fit.ba.posiljka.helper.MyFragmentUtils;
 import android.os.Bundle;
 import android.support.constraint.solver.widgets.Snapshot;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +34,7 @@ public class PosiljkaAdd2Fragment extends Fragment {
     private EditText txtNapomena;
     private EditText txtIznos;
     private Switch switchPlatiPouzecem;
+    private String tag="PosiljkaAdd2Fragment";
 
 
     // TODO: Rename and change types and number of parameters
@@ -61,7 +65,7 @@ public class PosiljkaAdd2Fragment extends Fragment {
         txtIznos = view.findViewById(R.id.txtIznos);
         switchPlatiPouzecem = view.findViewById(R.id.switchPlatiPouzecem);
 
-        Button btnDalje= view.findViewById(R.id.btnDalje);
+        Button btnDalje = view.findViewById(R.id.btnDalje);
         btnDalje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,7 +73,9 @@ public class PosiljkaAdd2Fragment extends Fragment {
             }
         });
 
+
         return view;
+
     }
 
     private void do_btnDaljeClick() {
