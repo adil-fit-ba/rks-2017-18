@@ -1,12 +1,21 @@
 package android.fit.ba.posiljka.fragments;
 
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.fit.ba.posiljka.R;
+import android.fit.ba.posiljka.data.PosiljkaPregledVM;
 import android.fit.ba.posiljka.data.PosiljkaVM;
 import android.fit.ba.posiljka.data.Storage;
+import android.fit.ba.posiljka.helper.MyApiRequest;
+import android.fit.ba.posiljka.helper.MyApp;
+import android.fit.ba.posiljka.helper.MyConfig;
 import android.fit.ba.posiljka.helper.MyFragmentUtils;
+import android.fit.ba.posiljka.helper.MyGson;
+import android.fit.ba.posiljka.helper.MyRunnable;
+import android.fit.ba.posiljka.helper.MyUrlConnection;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -16,10 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.QuickContactBadge;
 import android.widget.TextView;
 
 import java.util.List;
@@ -44,7 +50,7 @@ public class PosiljkaListFragment extends Fragment {
 
         btnDodaj = view.findViewById(R.id.fab);
         lvPosiljka = view.findViewById(R.id.lvPosiljka);
-        popuniPodatke();
+        popuniPodatkeTask();
 
         btnDodaj.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,15 +67,22 @@ public class PosiljkaListFragment extends Fragment {
     private void do_btnDodajClick() {
         MyFragmentUtils.openAsReplace(getActivity(), R.id.mjestoFragment, PosiljkaAdd1Fragment.newInstance());
     }
+    private void popuniPodatkeTask() {
+        MyApiRequest.get(getActivity(),"Posiljka", new MyRunnable<PosiljkaPregledVM>() {
+            @Override
+            public void run(PosiljkaPregledVM x) {
+                popuniPodatke(x);
+            }
+        });
+    }
+    private void popuniPodatke(final PosiljkaPregledVM podaci) {
 
-    private void popuniPodatke() {
 
-        final List<PosiljkaVM> podaci = Storage.getPosiljke();
 
         adapter = new BaseAdapter() {
             @Override
             public int getCount() {
-                return podaci.size();
+                return podaci.rows.size();
             }
 
             @Override
@@ -95,10 +108,10 @@ public class PosiljkaListFragment extends Fragment {
                 TextView txtMeta = view.findViewById(R.id.txtMeta);
 
 
-                PosiljkaVM x = podaci.get(position);
+                PosiljkaPregledVM.Row x = podaci.rows.get(position);
 
-                txtFirstLine.setText(x.primaoc.getImePrezime());
-                txtSecondLine.setText(x.primaoc.getOpstinaVM().toString());
+                txtFirstLine.setText(x.primaocImePrezime);
+                txtSecondLine.setText(x.primaocAdresa);
                 txtThirdLine.setText(x.masa + " kg  ");
                 txtMeta.setText("broj: " + x.brojPosiljke);
                 return view;
@@ -110,14 +123,14 @@ public class PosiljkaListFragment extends Fragment {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
-                PosiljkaVM x = podaci.get(position);
+                PosiljkaPregledVM.Row x = podaci.rows.get(position);
                 do_listViewLongClick(x);
                 return true;
             }
         });
     }
 
-    private void do_listViewLongClick(final PosiljkaVM x) {
+    private void do_listViewLongClick(final PosiljkaPregledVM.Row x) {
 
         final AlertDialog.Builder adb = new AlertDialog.Builder(getActivity());
         adb.setTitle("Pitanje?");
@@ -126,7 +139,7 @@ public class PosiljkaListFragment extends Fragment {
         adb.setPositiveButton("DA", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Storage.removePosiljka(x);
+               // Storage.removePosiljka(x);
                 dialog.dismiss();
                 adapter.notifyDataSetChanged();
             }

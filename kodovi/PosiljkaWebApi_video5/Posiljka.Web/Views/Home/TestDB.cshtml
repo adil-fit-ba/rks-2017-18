@@ -1,0 +1,17 @@
+﻿@using Posiljka.Data.EF
+@model Posiljka.Data.EF.MyContext
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Test DB - row count</h2>
+
+Drzava: @Model.Drzava.Count() <br />
+Opstina: @Model.Opstina.Count() <br />
+Korisnik: @Model.Korisnik.Count() <br />
+Posiljka: @Model.Posiljka.Count() <br />
+
+
+@Html.ActionLink("Back", "Index")

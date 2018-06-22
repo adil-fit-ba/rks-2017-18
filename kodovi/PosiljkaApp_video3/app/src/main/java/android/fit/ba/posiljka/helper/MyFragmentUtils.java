@@ -1,22 +1,24 @@
 package android.fit.ba.posiljka.helper;
 
+import android.app.Activity;
+import android.app.DialogFragment;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.fit.ba.posiljka.fragments.PosiljkaListFragment;
 
-public class MyFragmentUtils
-{
+public class MyFragmentUtils {
+    public static void openAsReplace(Activity activity, int id, Fragment fragment) {
 
-    public static void openAsReplace(android.app.Activity activity, int id, android.support.v4.app.Fragment fragment)
-    {
-
-        android.app.FragmentManager fragmentManager = activity.getFragmentManager();
-        android.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        FragmentManager fragmentManager = activity.getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         fragmentTransaction.replace(id, fragment);
         fragmentTransaction.commit();
     }
 
-    public static void openAsDialog(android.app.Activity activity, android.app.DialogFragment dlg)
-    {
-        android.app.FragmentManager fm = activity.getFragmentManager();
+    public static void openAsDialog(Activity activity, DialogFragment dlg) {
+        FragmentManager fm = activity.getFragmentManager();
         dlg.show(fm, "nekitag");
     }
 }
