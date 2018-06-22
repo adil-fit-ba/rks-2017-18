@@ -31,3 +31,14 @@ C:\Users\Adil Joldic\Source\Repos\rks-2017-18\kodovi\PosiljkaWebApi_video5\Posil
 C:\Users\Adil Joldic\Source\Repos\rks-2017-18\kodovi\PosiljkaWebApi_video5\Posiljka.Data\obj\Debug\netcoreapp2.1\Posiljka.Data.AssemblyInfo.cs
 C:\Users\Adil Joldic\Source\Repos\rks-2017-18\kodovi\PosiljkaWebApi_video5\Posiljka.Data\obj\Debug\netcoreapp2.1\Posiljka.Data.dll
 C:\Users\Adil Joldic\Source\Repos\rks-2017-18\kodovi\PosiljkaWebApi_video5\Posiljka.Data\obj\Debug\netcoreapp2.1\Posiljka.Data.pdb
+D:\Users\adil\source\repos\rks-2017-18\kodovi\PosiljkaWebApi_video5\Posiljka.Data\bin\Debug\netcoreapp2.1\Posiljka.Data.deps.json
+D:\Users\adil\source\repos\rks-2017-18\kodovi\PosiljkaWebApi_video5\Posiljka.Data\bin\Debug\netcoreapp2.1\Posiljka.Data.runtimeconfig.json
+D:\Users\adil\source\repos\rks-2017-18\kodovi\PosiljkaWebApi_video5\Posiljka.Data\bin\Debug\netcoreapp2.1\Posiljka.Data.runtimeconfig.dev.json
+D:\Users\adil\source\repos\rks-2017-18\kodovi\PosiljkaWebApi_video5\Posiljka.Data\bin\Debug\netcoreapp2.1\Posiljka.Data.dll
+D:\Users\adil\source\repos\rks-2017-18\kodovi\PosiljkaWebApi_video5\Posiljka.Data\bin\Debug\netcoreapp2.1\Posiljka.Data.pdb
+D:\Users\adil\source\repos\rks-2017-18\kodovi\PosiljkaWebApi_video5\Posiljka.Data\obj\Debug\netcoreapp2.1\Posiljka.Data.csprojAssemblyReference.cache
+D:\Users\adil\source\repos\rks-2017-18\kodovi\PosiljkaWebApi_video5\Posiljka.Data\obj\Debug\netcoreapp2.1\Posiljka.Data.csproj.CoreCompileInputs.cache
+D:\Users\adil\source\repos\rks-2017-18\kodovi\PosiljkaWebApi_video5\Posiljka.Data\obj\Debug\netcoreapp2.1\Posiljka.Data.AssemblyInfoInputs.cache
+D:\Users\adil\source\repos\rks-2017-18\kodovi\PosiljkaWebApi_video5\Posiljka.Data\obj\Debug\netcoreapp2.1\Posiljka.Data.AssemblyInfo.cs
+D:\Users\adil\source\repos\rks-2017-18\kodovi\PosiljkaWebApi_video5\Posiljka.Data\obj\Debug\netcoreapp2.1\Posiljka.Data.dll
+D:\Users\adil\source\repos\rks-2017-18\kodovi\PosiljkaWebApi_video5\Posiljka.Data\obj\Debug\netcoreapp2.1\Posiljka.Data.pdb
