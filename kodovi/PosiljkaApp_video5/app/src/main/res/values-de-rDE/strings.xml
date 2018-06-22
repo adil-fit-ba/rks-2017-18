@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lieferung</string>
+    <string name="hello_blank_fragment">Guten tag</string>
+    <string name="ime_novi">Name</string>
+    <string name="snimi_button">Speichern</string>
+</resources>
