@@ -84,4 +84,9 @@ public class MyApiRequest {
     {
         request(activity, urlAction, MyUrlConnection.HttpMethod.POST, postObject, myCallback);
     }
+
+    public static <T> void put(Activity activity, final String urlAction, Object postObject,  final MyRunnable<T> myCallback)
+    {
+        request(activity, urlAction, MyUrlConnection.HttpMethod.PUT, postObject, myCallback);
+    }
 }

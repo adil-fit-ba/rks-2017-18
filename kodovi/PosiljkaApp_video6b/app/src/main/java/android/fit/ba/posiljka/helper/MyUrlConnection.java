@@ -9,11 +9,13 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class MyUrlConnection {
-public static enum HttpMethod {
-    GET, POST, HEAD, OPTIONS, PUT, DELETE, TRACE
+public class MyUrlConnection
+{
+    public enum HttpMethod
+    {
+        GET, POST, HEAD, OPTIONS, PUT, DELETE, TRACE
     }
-    private static final String TAG = "MyUrlConnection";
+
 
     public static MyApiResult request(String urlString, HttpMethod httpMethod, String postData, String contentType) {
 
@@ -21,10 +23,8 @@ public static enum HttpMethod {
 
         String charset = "UTF-8";
 
-
         try {
             URL url = new URL(urlString);
-
 
             connection = (HttpURLConnection) url.openConnection();
             connection.setDoInput(true);
@@ -33,7 +33,6 @@ public static enum HttpMethod {
             connection.setRequestProperty("Accept", contentType);
             connection.setRequestProperty("Accept-Charset", charset);
             connection.setRequestMethod(httpMethod.toString());
-            connection.setRequestMethod("GET");
             connection.setUseCaches(false);
             connection.setAllowUserInteraction(false);
 
