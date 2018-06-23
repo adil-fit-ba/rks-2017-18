@@ -2,7 +2,7 @@ package android.fit.ba.posiljka;
 
 import android.content.Intent;
 import android.fit.ba.posiljka.data.KorisnikPregledVM;
-import android.fit.ba.posiljka.data.AutentifikacijaCheckVM;
+import android.fit.ba.posiljka.data.AutentifikacijaLoginPostVM;
 import android.fit.ba.posiljka.helper.MyApiRequest;
 import android.fit.ba.posiljka.helper.MyRunnable;
 import android.fit.ba.posiljka.helper.MySession;
@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
         String strUsername = txtUsername.getText().toString();
         String strPassword = txtPassword.getText().toString();
 
-        AutentifikacijaCheckVM model = new AutentifikacijaCheckVM(strUsername, strPassword);
+        AutentifikacijaLoginPostVM model = new AutentifikacijaLoginPostVM(strUsername, strPassword);
 
         MyApiRequest.post(this, "Autentifikacija/LoginCheck", model, new MyRunnable<KorisnikPregledVM.Row>() {
             @Override

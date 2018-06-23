@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Posiljka.Data.EF;
+using Posiljka.Data.EntityModels;
 using Posiljka.Web.Helper;
 using Posiljka.Web.ViewModels.api;
 
@@ -11,20 +12,33 @@ namespace Posiljka.Web.Controllers.api
     public class AutentifikacijaController : MyWebApiBaseController
     {
         [HttpPost]
-        public IActionResult LoginCheck([FromBody] AutentifikacijaCheckVM input)
+        public ActionResult<AutentifikacijaResultVM> LoginCheck([FromBody] AutentifikacijaLoginPostVM input)
         {
-            KorisnikPregledVM.Row model = _db.Korisnik
+            string token = Guid.NewGuid().ToString();
+
+            AutentifikacijaResultVM model = _db.Korisnik
                 .Where(w=>w.KorisnickiNalog.KorisnickoIme == input.Username && w.KorisnickiNalog.Lozinka == input.Password)
-                .Select(s => new KorisnikPregledVM.Row
+                .Select(s => new AutentifikacijaResultVM
                 {
-                    id = s.Id,
                     ime = s.Ime,
+                    korisnickiNalogId = s.KorisnickiNalogId,
                     prezime = s.Prezime,
-                    opstina = s.Opstina.Drzava.Naziv + " - " + s.Opstina.Naziv
+                    username = s.KorisnickiNalog.KorisnickoIme,
+                    token = token
                 }).SingleOrDefault();
 
+            if (model != null)
+            {
+                _db.AutorizacijskiToken.Add(new AutorizacijskiToken
+                {
+                    Vrijednost = model.token,
+                    KorisnickiNalogId = model.korisnickiNalogId.Value,
+                    VrijemeEvidentiranja = DateTime.Now
+                });
+                _db.SaveChanges();
+            }
 
-            return Ok(model);
+            return model;
         }
 
 

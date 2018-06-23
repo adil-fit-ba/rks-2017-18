@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/app/src/main/java/android/fit/ba/posiljka/data/KorisnikAddVM.java" charset="ISO-8859-1" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/android/fit/ba/posiljka/data/KorisnikPregledVM.java" charset="ISO-8859-1" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/android/fit/ba/posiljka/data/OpstinaPregledVM.java" charset="ISO-8859-1" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/android/fit/ba/posiljka/data/PosiljkaAddVM.java" charset="ISO-8859-1" />
-  </component>
-</project>

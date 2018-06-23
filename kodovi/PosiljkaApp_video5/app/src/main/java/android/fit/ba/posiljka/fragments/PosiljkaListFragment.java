@@ -6,10 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.fit.ba.posiljka.R;
 import android.fit.ba.posiljka.data.PosiljkaPregledVM;
-import android.fit.ba.posiljka.data.PosiljkaVM;
-import android.fit.ba.posiljka.data.Storage;
-import android.fit.ba.posiljka.helper.MyApiRequest;
-import android.fit.ba.posiljka.helper.MyApp;
 import android.fit.ba.posiljka.helper.MyConfig;
 import android.fit.ba.posiljka.helper.MyFragmentUtils;
 import android.fit.ba.posiljka.helper.MyGson;
@@ -19,6 +15,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,8 +24,9 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import java.util.List;
+import java.lang.reflect.Type;
 
 public class PosiljkaListFragment extends Fragment {
 
@@ -68,12 +66,33 @@ public class PosiljkaListFragment extends Fragment {
         MyFragmentUtils.openAsReplace(getActivity(), R.id.mjestoFragment, PosiljkaAdd1Fragment.newInstance());
     }
     private void popuniPodatkeTask() {
-        MyApiRequest.get(getActivity(),"Posiljka", new MyRunnable<PosiljkaPregledVM>() {
+
+        new AsyncTask<Void, Void, PosiljkaPregledVM>() {
+            private ProgressDialog progressDialog;
+
             @Override
-            public void run(PosiljkaPregledVM x) {
+            protected void onPreExecute() {
+                progressDialog = ProgressDialog.show(getActivity(), "Loading", "Sačekajte...");
+            }
+
+
+            @Override
+            protected PosiljkaPregledVM doInBackground(Void... voids) {
+
+                String strJson = MyUrlConnection.Get(MyConfig.baseUrl + "Posiljka/Index");
+                PosiljkaPregledVM x = MyGson.build().fromJson(strJson, PosiljkaPregledVM.class);
+
+                return x;
+            }
+
+            @Override
+            protected void onPostExecute(PosiljkaPregledVM x) {
+
+                progressDialog.dismiss();
                 popuniPodatke(x);
             }
-        });
+        }.execute();
+
     }
     private void popuniPodatke(final PosiljkaPregledVM podaci) {
 

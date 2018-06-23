@@ -44,7 +44,7 @@ namespace Posiljka.Web.Controllers
             return Ok(model);
         }
 
-        [Route("{brojPosiljke}")]
+        [HttpDelete("{brojPosiljke}")]
         public IActionResult Remove(int brojPosiljke)
         {
             PosiljkaRecord x = _db.Posiljka.Find(brojPosiljke);

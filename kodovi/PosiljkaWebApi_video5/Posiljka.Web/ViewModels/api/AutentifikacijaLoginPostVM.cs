@@ -3,7 +3,7 @@ using Posiljka.Web.Helper;
 
 namespace Posiljka.Web.ViewModels.api
 {
-    public class AutentifikacijaCheckVM
+    public class AutentifikacijaLoginPostVM
     {
         public string Username { get; set; }
         public string Password{ get; set; }
