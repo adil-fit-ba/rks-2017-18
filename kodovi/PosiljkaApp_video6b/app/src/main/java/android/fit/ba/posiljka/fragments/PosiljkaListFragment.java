@@ -26,6 +26,7 @@ public class PosiljkaListFragment extends Fragment {
     private ListView lvPosiljka;
     private FloatingActionButton btnDodaj;
     private BaseAdapter adapter;
+    private PosiljkaPregledVM podaci;
 
 
     public  static PosiljkaListFragment newInstance()
@@ -62,14 +63,12 @@ public class PosiljkaListFragment extends Fragment {
         MyApiRequest.get(getActivity(),"Posiljka/Index", new MyRunnable<PosiljkaPregledVM>() {
             @Override
             public void run(PosiljkaPregledVM x) {
-                popuniPodatke(x);
+                podaci = x; //postavljeno kao field radi    adapter.notifyDataSetChanged(); za brisanje posiljke iz ListView
+                popuniPodatke();
             }
         });
     }
-    private void popuniPodatke(final PosiljkaPregledVM podaci) {
-
-
-
+    private void popuniPodatke() {
         adapter = new BaseAdapter() {
             @Override
             public int getCount() {
@@ -132,10 +131,11 @@ public class PosiljkaListFragment extends Fragment {
             public void onClick(DialogInterface dialog, int which) {
 
                 dialog.dismiss();
-                MyApiRequest.delete(getActivity(), "Posiljka/Delete/" + x.brojPosiljke, new MyRunnable(){
+                MyApiRequest.delete(getActivity(), "Posiljka/Remove/" + x.brojPosiljke, new MyRunnable<Integer>(){
 
                     @Override
-                    public void run(Object o) {
+                    public void run(Integer o) {
+                        podaci.rows.remove(x);
                         adapter.notifyDataSetChanged();
                     }
                 });

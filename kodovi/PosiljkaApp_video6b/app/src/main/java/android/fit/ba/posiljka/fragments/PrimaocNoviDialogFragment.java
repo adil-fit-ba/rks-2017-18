@@ -7,6 +7,7 @@ import android.fit.ba.posiljka.R;
 import android.fit.ba.posiljka.data.KorisnikAddVM;
 import android.fit.ba.posiljka.data.KorisnikPregledVM;
 import android.fit.ba.posiljka.data.OpstinaPregledVM;
+import android.fit.ba.posiljka.helper.MyApiRequest;
 import android.fit.ba.posiljka.helper.MyRunnable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -36,7 +37,7 @@ public class PrimaocNoviDialogFragment extends DialogFragment {
     private Spinner spinnerOpstina;
     private EditText txtPrezime;
     private EditText txtIme;
-    private OpstinaPregledVM opstine;
+    private OpstinaPregledVM podaci;
 
 
     public PrimaocNoviDialogFragment() {
@@ -82,25 +83,31 @@ public class PrimaocNoviDialogFragment extends DialogFragment {
                 do_btnDodaj();
             }
         });
-        
-        popuniPodatke();
+
+        popuniPodatkeTask();
 
         return view;
     }
-    private List<String> getOpstineString()
-    {
-        List<String> result = new ArrayList<>();
 
-        for (OpstinaPregledVM.Row x : opstine.rows) {
-            result.add(x.drzava + " - " + x.naziv);
-        }
+    private void popuniPodatkeTask() {
 
-        return result;
+        MyApiRequest.get(getActivity(), "/Opstina/GetAll", new MyRunnable<OpstinaPregledVM>() {
+            @Override
+            public void run(OpstinaPregledVM x) {
+                podaci = x;
+                popuniPodatke();
+            }
+        });
     }
 
     private void popuniPodatke() {
+        List<String> result = new ArrayList<>();
 
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, getOpstineString());
+        for (OpstinaPregledVM.Row x : podaci.rows) {
+            result.add(x.drzava + " - " + x.naziv);
+        }
+
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, result);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerOpstina.setAdapter(dataAdapter);
 
@@ -108,13 +115,19 @@ public class PrimaocNoviDialogFragment extends DialogFragment {
 
     private void do_btnDodaj() {
         int position = spinnerOpstina.getSelectedItemPosition();
-        OpstinaPregledVM.Row x = opstine.rows.get(position);
+        OpstinaPregledVM.Row x = podaci.rows.get(position);
 
-        KorisnikAddVM korisnikVM = new KorisnikAddVM(txtIme.getText().toString(), txtPrezime.getText().toString(), x.id);
+        KorisnikAddVM newKorisnik = new KorisnikAddVM(txtIme.getText().toString(), txtPrezime.getText().toString(), x.id);
 
-        //Storage.addKorisnik(korisnikVM);
+        MyApiRequest.post(getActivity(), "/Korisnik/Add", newKorisnik, new MyRunnable<KorisnikPregledVM.Row>(){
 
-        // pMyCallBack.run(korisnikVM);
+            @Override
+            public void run(KorisnikPregledVM.Row x) {
+                pMyCallBack.run(x);
+            }
+        } );
+
+        //
         getDialog().dismiss();
     }
 

@@ -1,6 +1,10 @@
 package android.fit.ba.posiljka;
 
 import android.content.Intent;
+import android.fit.ba.posiljka.data.KorisnikPregledVM;
+import android.fit.ba.posiljka.data.AutentifikacijaCheckVM;
+import android.fit.ba.posiljka.helper.MyApiRequest;
+import android.fit.ba.posiljka.helper.MyRunnable;
 import android.fit.ba.posiljka.helper.MySession;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -34,8 +38,17 @@ public class LoginActivity extends AppCompatActivity {
         String strUsername = txtUsername.getText().toString();
         String strPassword = txtPassword.getText().toString();
 
-        KorisnikVM x = Storage.LoginCheck(strUsername, strPassword);
+        AutentifikacijaCheckVM model = new AutentifikacijaCheckVM(strUsername, strPassword);
 
+        MyApiRequest.post(this, "Autentifikacija/LoginCheck", model, new MyRunnable<KorisnikPregledVM.Row>() {
+            @Override
+            public void run(KorisnikPregledVM.Row x) {
+                checkLogin(x);
+            }
+        });
+    }
+
+    private void checkLogin(KorisnikPregledVM.Row x) {
         if (x==null)
         {
             View parentLayout = findViewById(android.R.id.content);

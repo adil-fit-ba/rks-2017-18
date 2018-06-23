@@ -17,6 +17,7 @@
             android:id="@+id/txtUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="korisnik1"
             android:hint="Username"
             android:inputType="textVisiblePassword" />
 
@@ -31,6 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
+            android:text="test"
             android:inputType="textPassword" />
 
     </android.support.design.widget.TextInputLayout>

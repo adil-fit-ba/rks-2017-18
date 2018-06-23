@@ -3,7 +3,9 @@ package android.fit.ba.posiljka.fragments;
 
 import android.app.Fragment;
 import android.fit.ba.posiljka.data.PosiljkaAddVM;
+import android.fit.ba.posiljka.helper.MyApiRequest;
 import android.fit.ba.posiljka.helper.MyFragmentUtils;
+import android.fit.ba.posiljka.helper.MyRunnable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -81,7 +83,7 @@ public class PosiljkaAdd2Fragment extends Fragment {
             this.posiljkaVM.iznos = Float.parseFloat(txtIznos.getText().toString());
             this.posiljkaVM.placaPouzecem = switchPlatiPouzecem.isSelected();
 
-          //  Storage.addPosiljka(posiljkaVM);
+            MyApiRequest.post(getActivity(), "Posiljka/Add", posiljkaVM, null);
             MyFragmentUtils.openAsReplace(getActivity(), R.id.mjestoFragment, PosiljkaListFragment.newInstance());
         }catch (Exception e)
         {

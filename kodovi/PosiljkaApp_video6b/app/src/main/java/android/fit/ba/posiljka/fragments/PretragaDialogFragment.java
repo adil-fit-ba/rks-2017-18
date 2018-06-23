@@ -4,6 +4,8 @@ package android.fit.ba.posiljka.fragments;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.fit.ba.posiljka.data.KorisnikPregledVM;
+import android.fit.ba.posiljka.helper.MyApiRequest;
+import android.fit.ba.posiljka.helper.MyApiResult;
 import android.fit.ba.posiljka.helper.MyFragmentUtils;
 import android.fit.ba.posiljka.helper.MyRunnable;
 import android.os.Bundle;
@@ -21,21 +23,15 @@ import android.widget.TextView;
 
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link PretragaDialogFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class PretragaDialogFragment extends DialogFragment {
 
+public class PretragaDialogFragment extends DialogFragment {
 
     public static final String NEKI_KEY = "neki_key";
     private ListView listView;
     private SearchView searchView;
     private MyRunnable<KorisnikPregledVM.Row> callback;
 
-    // TODO: Rename and change types and number of parameters
-    public static PretragaDialogFragment newInstance(MyRunnable myCallback) {
+    public static PretragaDialogFragment newInstance(MyRunnable<KorisnikPregledVM.Row> myCallback) {
         PretragaDialogFragment fragment = new PretragaDialogFragment();
         Bundle args = new Bundle();
         args.putSerializable(NEKI_KEY, myCallback);
@@ -87,7 +83,7 @@ public class PretragaDialogFragment extends DialogFragment {
                do_btnClose();
             }
         });
-        popuniPodatke("");
+        popuniPodatkeTask("");
 
         return view;
     }
@@ -102,11 +98,19 @@ public class PretragaDialogFragment extends DialogFragment {
     }
 
     private void do_btnTraziClick(String query) {
-        popuniPodatke(query);
+        popuniPodatkeTask(query);
     }
 
-    private void popuniPodatke(String query) {
-        final KorisnikPregledVM podaci = new KorisnikPregledVM(); //Storage.getKorisniciByIme(query);
+    private void popuniPodatkeTask(String query) {
+        MyApiRequest.get(getActivity(), "Korisnik/Find/" + query, new MyRunnable<KorisnikPregledVM>() {
+            @Override
+            public void run(KorisnikPregledVM x) {
+                popuniPodatke(x);
+            }
+        });
+    }
+
+    private void popuniPodatke(final KorisnikPregledVM podaci) {
 
         listView.setAdapter(new BaseAdapter() {
             @Override

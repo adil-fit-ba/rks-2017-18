@@ -2,7 +2,6 @@ package android.fit.ba.posiljka.helper;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.fit.ba.posiljka.data.PosiljkaPregledVM;
 import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -10,9 +9,7 @@ import android.view.View;
 import java.lang.reflect.Type;
 
 public class MyApiRequest {
-    public static <T> void get(final Activity activity, final String urlAction, final MyRunnable<T> myCallback) {
-
-
+    private static <T> void request(final Activity activity, final String urlAction, final MyUrlConnection.HttpMethod httpMethod, final Object postObject, final MyRunnable<T> myCallback) {
         new AsyncTask<Void, Void, MyApiResult>() {
             private ProgressDialog progressDialog;
 
@@ -21,24 +18,17 @@ public class MyApiRequest {
                 progressDialog = ProgressDialog.show(activity, "Loading", "Sačekajte...");
             }
 
-
             @Override
-            protected MyApiResult doInBackground(Void... voids) {
-
-                MyApiResult result = MyUrlConnection.Get(MyConfig.baseUrl + urlAction);
-
-
-
-                return result;
+            protected MyApiResult doInBackground(Void... voids)
+            {
+                String jsonPostObject = postObject==null?null:MyGson.build().toJson(postObject);
+                return MyUrlConnection.request(MyConfig.baseUrl +"/"+ urlAction, httpMethod, jsonPostObject, "application/json");
             }
 
             @Override
             protected void onPostExecute(MyApiResult result) {
 
-
                 progressDialog.dismiss();
-
-
 
                 if (result.isException)
                 {
@@ -60,27 +50,38 @@ public class MyApiRequest {
                         }
                     });
                     snackbar.show();
-                }else
+                }
+                else
                 {
+                    if (myCallback !=null) {
+                        Type genericType = myCallback.getGenericType();
 
-                    Type genericType = myCallback.getGenericType();
-
-                    try {
-                        T x = MyGson.build().fromJson(result.value, genericType);
-
+                        T x = null;
+                        try {
+                            x = MyGson.build().fromJson(result.value, genericType);
+                        } catch (Exception e) {
+                            View parentLayout = activity.findViewById(android.R.id.content);
+                            Snackbar.make(parentLayout, "Greška u aplikaciji. ", Snackbar.LENGTH_LONG).show();
+                        }
                         myCallback.run(x);
-                    }catch (Exception e)
-                    {
-                        View parentLayout = activity.findViewById(android.R.id.content);
-                        Snackbar.make(parentLayout, "Greška u aplikaciji. ", Snackbar.LENGTH_LONG).show();
                     }
-
                 }
             }
         }.execute();
-
     }
 
-    public static void delete(Activity activity, String urlAction, MyRunnable myRunnable) {
+
+    public static <T> void get(final Activity activity, final String urlAction, final MyRunnable<T> myCallback) {
+      request(activity, urlAction, MyUrlConnection.HttpMethod.GET, null, myCallback);
+    }
+
+    public static <T> void delete(Activity activity, String urlAction, MyRunnable<T> myCallback)
+    {
+        request(activity, urlAction, MyUrlConnection.HttpMethod.DELETE, null, myCallback);
+    }
+
+    public static <T> void post(Activity activity, final String urlAction, Object postObject,  final MyRunnable<T> myCallback)
+    {
+        request(activity, urlAction, MyUrlConnection.HttpMethod.POST, postObject, myCallback);
     }
 }
