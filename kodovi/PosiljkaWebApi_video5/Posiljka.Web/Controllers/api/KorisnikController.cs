@@ -5,12 +5,17 @@ using Microsoft.AspNetCore.Mvc;
 using Posiljka.Data.EF;
 using Posiljka.Data.EntityModels;
 using Posiljka.Web.Helper;
+using Posiljka.Web.Helper.webapi;
 using Posiljka.Web.ViewModels.api;
 
 namespace Posiljka.Web.Controllers.api
 {
     public class KorisnikController : MyWebApiBaseController
     {
+        public KorisnikController(MyContext db) : base(db)
+        {
+        }
+
         [HttpGet]
         public KorisnikPregledVM Find()
         {
@@ -20,7 +25,7 @@ namespace Posiljka.Web.Controllers.api
         [HttpGet("{name}")]
         public KorisnikPregledVM Find(string name)
         {
-            return new KorisnikPregledVM
+            var result = new KorisnikPregledVM
             {
                 rows = _db.Korisnik
                 .Where(w => (w.Ime + " " + w.Prezime).StartsWith(name) || (w.Prezime + " " + w.Ime).StartsWith(name))
@@ -32,6 +37,7 @@ namespace Posiljka.Web.Controllers.api
                     opstina = s.Opstina.Drzava.Naziv + " - " + s.Opstina.Naziv
                 }).ToList()
             };
+            return result;
         }
 
         [HttpPost]
@@ -52,7 +58,7 @@ namespace Posiljka.Web.Controllers.api
             _db.SaveChanges();
 
 
-            return _db.Korisnik
+            var result= _db.Korisnik
                     .Where(w => w.Id == newKorisnik.Id)
                     .Select(s => new KorisnikPregledVM.Row
                     {
@@ -62,10 +68,10 @@ namespace Posiljka.Web.Controllers.api
                         opstina = s.Opstina.Drzava.Naziv + " - " + s.Opstina.Naziv
                     })
                     .Single();
+
+            return result;
         }
 
-        public KorisnikController(MyContext db) : base(db)
-        {
-        }
+      
     }
 }

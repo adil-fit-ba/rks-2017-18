@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 
-namespace Posiljka.Web.Helper
+namespace Posiljka.Web.Helper.mvc
 {
     public static class MyCookieExtension
     {

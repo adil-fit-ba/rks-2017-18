@@ -1,22 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Posiljka.Data.EF;
-using Posiljka.Web.Helper;
-using Posiljka.Web.ViewModels;
+using Posiljka.Web.Helper.webapi;
 using Posiljka.Web.ViewModels.api;
 
-namespace Posiljka.Web.Controllers
+namespace Posiljka.Web.Controllers.api
 {
+    [MyApiAuthorize]
     public class OpstinaController : MyWebApiBaseController
     {
         public OpstinaController(MyContext db) : base(db)
         {
         }
 
-        public IActionResult GetAll()
+        [HttpGet]
+        public ActionResult<OpstinaPregledVM> GetAll()
         {
             var model = new OpstinaPregledVM()
             {
@@ -29,7 +27,7 @@ namespace Posiljka.Web.Controllers
                     }).ToList()
             };
 
-            return Ok(model);
+            return model;
         }
     }
 }

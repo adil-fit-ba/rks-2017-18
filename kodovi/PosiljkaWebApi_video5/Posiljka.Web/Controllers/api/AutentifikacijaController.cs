@@ -5,12 +5,17 @@ using Microsoft.AspNetCore.Mvc;
 using Posiljka.Data.EF;
 using Posiljka.Data.EntityModels;
 using Posiljka.Web.Helper;
+using Posiljka.Web.Helper.webapi;
 using Posiljka.Web.ViewModels.api;
 
 namespace Posiljka.Web.Controllers.api
 {
     public class AutentifikacijaController : MyWebApiBaseController
     {
+        public AutentifikacijaController(MyContext db) : base(db)
+        {
+        }
+
         [HttpPost]
         public ActionResult<AutentifikacijaResultVM> LoginCheck([FromBody] AutentifikacijaLoginPostVM input)
         {
@@ -24,10 +29,10 @@ namespace Posiljka.Web.Controllers.api
                     korisnickiNalogId = s.KorisnickiNalogId,
                     prezime = s.Prezime,
                     username = s.KorisnickiNalog.KorisnickoIme,
-                    token = token
+                    token = token,
                 }).SingleOrDefault();
 
-            if (model != null)
+            if(model != null)
             {
                 _db.AutorizacijskiToken.Add(new AutorizacijskiToken
                 {
@@ -41,9 +46,27 @@ namespace Posiljka.Web.Controllers.api
             return model;
         }
 
-
-        public AutentifikacijaController(MyContext db) : base(db)
+        [HttpGet]
+        public ActionResult TokenCheck()
         {
+            if (AuthKorisnickiNalog == null)
+            {
+                return Unauthorized();
+            }
+            return Ok();
+        }
+
+        [HttpDelete]
+        public ActionResult Logout()
+        {
+            string tokenString = HttpContext.GetMyAuthToken();
+            AutorizacijskiToken autorizacijskiToken = _db.AutorizacijskiToken.Find(tokenString);
+            if (autorizacijskiToken != null)
+            {
+                _db.Remove(autorizacijskiToken);
+                _db.SaveChanges();
+            }
+            return Ok();
         }
     }
 }

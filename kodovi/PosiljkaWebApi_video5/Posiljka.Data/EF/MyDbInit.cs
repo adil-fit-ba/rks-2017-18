@@ -38,7 +38,7 @@ namespace Posiljka.Data.EF
 
             for (int i = 0; i < 20; i++)
             {
-                posiljkas.Add(new PosiljkaRecord{Korisnik = korisniks.MyRandom(), BrojPosiljke = i, Napomena = "Napomena br " + i, PlacaPouzecem = true, Iznos = random.Next(5, 50), Masa = random.Next(5, 15)});
+                posiljkas.Add(new PosiljkaRecord{KorisnikEvidentirao = korisniks.MyRandom(), VrijemeEvidentirana = DateTime.Now, KorisnikPrimaoc = korisniks.MyRandom(), BrojPosiljke = i, Napomena = "Napomena br " + i, PlacaPouzecem = true, Iznos = random.Next(5, 50), Masa = random.Next(5, 15)});
             }
 
             _context.Drzava.AddRange(drzavas);

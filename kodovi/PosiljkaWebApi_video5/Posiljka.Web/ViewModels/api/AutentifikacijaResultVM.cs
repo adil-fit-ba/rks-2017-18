@@ -5,10 +5,10 @@ namespace Posiljka.Web.ViewModels.api
 {
     public class AutentifikacijaResultVM
     {
-        public string username { get; set; }
-        public string ime{ get; set; }
-        public string prezime{ get; set; }
-        public string token{ get; set; }
+        public string username;
+        public string ime;
+        public string prezime;
+        public string token;
         public int? korisnickiNalogId;
     }
 }

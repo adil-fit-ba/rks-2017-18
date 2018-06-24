@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="posiljka.app.fit.ba" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Adil\ Joldic\\Source\\Repos\\rks-2017-18\\kodovi\\PosiljkaWebApi_video5\\Posiljka\.Web\\obj\\Release\\netcoreapp2\.1\\win-x64\\PubTmp\\Out\\$" />
+  </parameter>
+</parameters>

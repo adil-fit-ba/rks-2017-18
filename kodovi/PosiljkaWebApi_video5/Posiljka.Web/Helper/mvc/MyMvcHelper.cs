@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace Posiljka.Web.Helper
+namespace Posiljka.Web.Helper.mvc
 {
     public class MyMvcHelper
     {

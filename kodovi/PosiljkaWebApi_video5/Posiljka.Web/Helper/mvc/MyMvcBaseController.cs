@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Posiljka.Data.EF;
 
-namespace Posiljka.Web.Helper
+namespace Posiljka.Web.Helper.mvc
 {
     public abstract class MyMvcBaseController : Controller
     {

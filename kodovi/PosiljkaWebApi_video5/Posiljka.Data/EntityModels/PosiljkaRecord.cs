@@ -16,8 +16,14 @@ namespace Posiljka.Data.EntityModels
         public bool PlacaPouzecem { get; set; }
 
 
-        [ForeignKey(nameof(Korisnik))]
-        public int KorisnikID { get; set; }
-        public Korisnik Korisnik { get; set; }
+        [ForeignKey(nameof(KorisnikPrimaoc))]
+        public int KorisnikPrimaocID { get; set; }
+        public Korisnik KorisnikPrimaoc { get; set; }
+
+
+        [ForeignKey(nameof(KorisnikEvidentirao))]
+        public int? KorisnikEvidentiraoID { get; set; }
+        public Korisnik KorisnikEvidentirao { get; set; }
+        public DateTime? VrijemeEvidentirana { get; set; }
     }
 }

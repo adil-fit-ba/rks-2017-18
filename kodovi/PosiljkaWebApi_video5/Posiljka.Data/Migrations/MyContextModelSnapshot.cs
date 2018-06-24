@@ -118,7 +118,9 @@ namespace Posiljka.Data.Migrations
 
                     b.Property<float>("Iznos");
 
-                    b.Property<int>("KorisnikID");
+                    b.Property<int?>("KorisnikEvidentiraoID");
+
+                    b.Property<int>("KorisnikPrimaocID");
 
                     b.Property<float>("Masa");
 
@@ -126,9 +128,13 @@ namespace Posiljka.Data.Migrations
 
                     b.Property<bool>("PlacaPouzecem");
 
+                    b.Property<DateTime?>("VrijemeEvidentirana");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("KorisnikID");
+                    b.HasIndex("KorisnikEvidentiraoID");
+
+                    b.HasIndex("KorisnikPrimaocID");
 
                     b.ToTable("Posiljka");
                 });
@@ -163,9 +169,13 @@ namespace Posiljka.Data.Migrations
 
             modelBuilder.Entity("Posiljka.Data.EntityModels.PosiljkaRecord", b =>
                 {
-                    b.HasOne("Posiljka.Data.EntityModels.Korisnik", "Korisnik")
+                    b.HasOne("Posiljka.Data.EntityModels.Korisnik", "KorisnikEvidentirao")
                         .WithMany()
-                        .HasForeignKey("KorisnikID")
+                        .HasForeignKey("KorisnikEvidentiraoID");
+
+                    b.HasOne("Posiljka.Data.EntityModels.Korisnik", "KorisnikPrimaoc")
+                        .WithMany()
+                        .HasForeignKey("KorisnikPrimaocID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

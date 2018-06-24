@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Specialized;
+using System.Linq;
+using Microsoft.AspNetCore.Mvc;
 using Posiljka.Data.EF;
+using Posiljka.Data.EntityModels;
 
-namespace Posiljka.Web.Helper
+namespace Posiljka.Web.Helper.webapi
 {
     [Route("api/[controller]/[action]")]
     public abstract class MyWebApiBaseController : Controller
@@ -13,6 +16,7 @@ namespace Posiljka.Web.Helper
             _db = db;
         }
 
-       
+        protected KorisnickiNalog AuthKorisnickiNalog => HttpContext.GetKorisnikOfAuthToken();
+        protected Korisnik AuthKorisnik => _db.Korisnik.SingleOrDefault(s => s.KorisnickiNalogId == AuthKorisnickiNalog.Id);
     }
 }
