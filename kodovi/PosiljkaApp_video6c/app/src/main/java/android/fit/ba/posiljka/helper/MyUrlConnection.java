@@ -1,5 +1,7 @@
 package android.fit.ba.posiljka.helper;
 
+import android.fit.ba.posiljka.data.AutentifikacijaResultVM;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -32,6 +34,10 @@ public class MyUrlConnection
             connection.setRequestProperty("Content-Type", contentType);
             connection.setRequestProperty("Accept", contentType);
             connection.setRequestProperty("Accept-Charset", charset);
+
+            AutentifikacijaResultVM korisnik = MySession.getKorisnik();
+            connection.setRequestProperty("MyAuthToken", korisnik !=null? korisnik.token:"");
+
             connection.setRequestMethod(httpMethod.toString());
             connection.setUseCaches(false);
             connection.setAllowUserInteraction(false);
@@ -60,10 +66,8 @@ public class MyUrlConnection
             } else {
                 // Status code is not 200
                 // Do something to handle the error
-                InputStream inputStream = new BufferedInputStream(connection.getErrorStream());
-                String response = convertToString(inputStream);
-                if (response.length()==0)
-                    response = connection.getResponseMessage();
+            //    InputStream inputStream = new BufferedInputStream(connection.getErrorStream());
+                String response = connection.getResponseMessage();
                 return MyApiResult.Error(statusCode, response);
             }
 

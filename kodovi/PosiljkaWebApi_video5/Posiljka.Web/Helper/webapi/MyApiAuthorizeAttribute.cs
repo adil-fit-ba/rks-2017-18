@@ -35,6 +35,8 @@ namespace Posiljka.Web.Helper.webapi
                      await next(); //ok - ima pravo pristupa
                      return;
                 }
+
+                //nema pravo pristupa
                 context.Result = new UnauthorizedResult();
         }
     }

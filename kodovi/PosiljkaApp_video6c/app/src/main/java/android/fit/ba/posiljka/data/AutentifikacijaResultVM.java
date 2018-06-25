@@ -1,6 +1,8 @@
 package android.fit.ba.posiljka.data;
 
-public class AutentifikacijaResultVM
+import java.io.Serializable;
+
+public class AutentifikacijaResultVM implements Serializable
 {
     public String username;
     public String ime;

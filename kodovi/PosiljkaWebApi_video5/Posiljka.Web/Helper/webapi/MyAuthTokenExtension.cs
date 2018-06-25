@@ -17,13 +17,13 @@ namespace Posiljka.Web.Helper.webapi
             MyContext db = httpContext.RequestServices.GetService<MyContext>();
 
             string token = httpContext.GetMyAuthToken();
-            AutorizacijskiToken autorizacijskiToken = db.AutorizacijskiToken.SingleOrDefault(x => token != null && x.Vrijednost == token);
-            return autorizacijskiToken?.KorisnickiNalog;
+            KorisnickiNalog korisnickiNalog = db.AutorizacijskiToken.Where(x => token != null && x.Vrijednost == token).Select(s => s.KorisnickiNalog).SingleOrDefault();
+            return korisnickiNalog;
         }
 
         public static string GetMyAuthToken(this HttpContext httpContext)
         {
-            string token = httpContext.Request.Headers["authToken"];
+            string token = httpContext.Request.Headers["MyAuthToken"];
             return token;
         }
     }

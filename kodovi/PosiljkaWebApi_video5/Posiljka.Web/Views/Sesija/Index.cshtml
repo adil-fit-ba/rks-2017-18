@@ -14,7 +14,9 @@
     <thead>
     <tr>
         <th>Vrijeme</th>
+        <th>Device info</th>
         <th>Ip adresa</th>
+        <th></th>
         <th>Akcija</th>
     </tr>
     </thead>
@@ -22,13 +24,17 @@
     @foreach (var x in Model.Rows)
     {
         <tr>
-            <td>@x.VrijemeLogiranja
-            @if (x.token == Model.TrenutniToken)
-            {
-                <strong>(trenutna sesija)</strong>
-            }
+            <td>@x.VrijemeLogiranja 
+              
             </td>
+            <td>@x.deviceInfo </td>
             <td>@x.IpAdresa</td>
+            <td>
+                @if (x.token == Model.TrenutniToken)
+                {
+                    <strong>(trenutna sesija)</strong>
+                }
+            </td>
             <td>
                 <a asp-action="Obrisi" asp-route-token="@x.token" class="btn btn-danger">Obrisi</a>
             </td>

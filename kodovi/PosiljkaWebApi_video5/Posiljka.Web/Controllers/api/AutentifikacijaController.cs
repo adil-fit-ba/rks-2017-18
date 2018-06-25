@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Primitives;
 using Posiljka.Data.EF;
 using Posiljka.Data.EntityModels;
 using Posiljka.Web.Helper;
@@ -32,13 +33,16 @@ namespace Posiljka.Web.Controllers.api
                     token = token,
                 }).SingleOrDefault();
 
-            if(model != null)
+
+            if (model != null)
             {
                 _db.AutorizacijskiToken.Add(new AutorizacijskiToken
                 {
                     Vrijednost = model.token,
                     KorisnickiNalogId = model.korisnickiNalogId.Value,
-                    VrijemeEvidentiranja = DateTime.Now
+                    VrijemeEvidentiranja = DateTime.Now,
+                    deviceInfo = "Mobile app - " + input.deviceInfo,
+                    IpAdresa = HttpContext.Connection.RemoteIpAddress +":" + HttpContext.Connection.RemotePort
                 });
                 _db.SaveChanges();
             }
@@ -46,15 +50,6 @@ namespace Posiljka.Web.Controllers.api
             return model;
         }
 
-        [HttpGet]
-        public ActionResult TokenCheck()
-        {
-            if (AuthKorisnickiNalog == null)
-            {
-                return Unauthorized();
-            }
-            return Ok();
-        }
 
         [HttpDelete]
         public ActionResult Logout()

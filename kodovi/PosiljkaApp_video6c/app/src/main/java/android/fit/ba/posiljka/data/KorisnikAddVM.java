@@ -1,6 +1,8 @@
 package android.fit.ba.posiljka.data;
 
-public class KorisnikAddVM
+import java.io.Serializable;
+
+public class KorisnikAddVM implements Serializable
     {
         public String ime;
         public String prezime;

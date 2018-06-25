@@ -12,5 +12,6 @@ namespace Posiljka.Data.EntityModels
         public KorisnickiNalog KorisnickiNalog { get; set; }
         public DateTime VrijemeEvidentiranja { get; set; }
         public string IpAdresa { get; set; }
+        public string deviceInfo { get; set; }
     }
 }

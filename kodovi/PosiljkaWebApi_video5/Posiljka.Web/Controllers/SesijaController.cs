@@ -26,7 +26,8 @@ namespace Posiljka.Web.Controllers
             {
                 VrijemeLogiranja = s.VrijemeEvidentiranja,
                 token = s.Vrijednost,
-                IpAdresa = s.IpAdresa
+                IpAdresa = s.IpAdresa,
+                deviceInfo = s.deviceInfo
             }).ToList();
             model.TrenutniToken = HttpContext.GetTrenutniToken();
             return View(model);

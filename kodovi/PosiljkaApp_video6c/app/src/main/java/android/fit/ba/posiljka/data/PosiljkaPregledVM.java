@@ -1,9 +1,10 @@
 package android.fit.ba.posiljka.data;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class PosiljkaPregledVM {
-    public static class Row
+public class PosiljkaPregledVM  implements Serializable {
+    public static class Row implements Serializable
     {
         public String primaocImePrezime;
         public String primaocAdresa;

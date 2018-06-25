@@ -3,6 +3,7 @@ package android.fit.ba.posiljka;
 import android.app.Fragment;
 import android.content.Intent;
 import android.fit.ba.posiljka.fragments.PosiljkaListFragment;
+import android.fit.ba.posiljka.helper.MyApiRequest;
 import android.fit.ba.posiljka.helper.MyFragmentUtils;
 import android.fit.ba.posiljka.helper.MySession;
 import android.os.Bundle;
@@ -99,7 +100,9 @@ public class GlavniActivity extends AppCompatActivity
 
         }
         else if (id == R.id.nav_logout) {
+            MyApiRequest.delete(this, "Autentifikacija/Logout", null);
             MySession.setKorisnik( null);
+
             startActivity(new Intent(this, LoginActivity.class));
         }
 

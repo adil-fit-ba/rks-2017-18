@@ -34,8 +34,11 @@ namespace Posiljka.Web.Helper.mvc
                 db.AutorizacijskiToken.Add(new AutorizacijskiToken
                 {
                     Vrijednost = token,
-                   KorisnickiNalogId = korisnik.Id,
-                    VrijemeEvidentiranja = DateTime.Now
+                    KorisnickiNalogId = korisnik.Id,
+                    VrijemeEvidentiranja = DateTime.Now,
+                    deviceInfo = "Web app - " + context.Request.Headers["User-Agent"],
+                    IpAdresa = context.Connection.RemoteIpAddress + ":" + context.Connection.RemotePort
+
                 });
                 db.SaveChanges();
                 context.Session.Set(LogiraniKorisnik, token);

@@ -33,6 +33,8 @@ namespace Posiljka.Data.Migrations
 
                     b.Property<DateTime>("VrijemeEvidentiranja");
 
+                    b.Property<string>("deviceInfo");
+
                     b.HasKey("Id");
 
                     b.HasIndex("KorisnickiNalogId");

@@ -7,6 +7,7 @@ import android.fit.ba.posiljka.data.AutentifikacijaLoginPostVM;
 import android.fit.ba.posiljka.helper.MyApiRequest;
 import android.fit.ba.posiljka.helper.MyRunnable;
 import android.fit.ba.posiljka.helper.MySession;
+import android.os.Build;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,8 +39,10 @@ public class LoginActivity extends AppCompatActivity {
 
         String strUsername = txtUsername.getText().toString();
         String strPassword = txtPassword.getText().toString();
+        String deviceInfo = android.os.Build.DEVICE+" | " +  android.os.Build.VERSION.RELEASE + " | " + android.os.Build.PRODUCT + " | " + Build.MODEL;
 
-        AutentifikacijaLoginPostVM model = new AutentifikacijaLoginPostVM(strUsername, strPassword);
+
+        AutentifikacijaLoginPostVM model = new AutentifikacijaLoginPostVM(strUsername, strPassword, deviceInfo);
 
         MyApiRequest.post(this, "Autentifikacija/LoginCheck", model, new MyRunnable<AutentifikacijaResultVM>() {
             @Override

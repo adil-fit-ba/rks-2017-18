@@ -10,6 +10,7 @@ using Posiljka.Web.ViewModels.api;
 
 namespace Posiljka.Web.Controllers.api
 {
+    [MyApiAuthorize]
     public class KorisnikController : MyWebApiBaseController
     {
         public KorisnikController(MyContext db) : base(db)
