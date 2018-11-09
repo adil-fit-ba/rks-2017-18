@@ -25,7 +25,7 @@ public class MyUrlConnection {
 
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setDoInput(true);
-            urlConnection.setDoOutput(true);
+            //urlConnection.setDoOutput(true);
             urlConnection.setRequestProperty("Content-Type", "application/json");
             urlConnection.setRequestMethod("GET");
 
